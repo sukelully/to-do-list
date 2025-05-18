@@ -1,6 +1,6 @@
 class Task {
-    constructor(title, description, dueDate, priority) {
-        this.title = title;
+    constructor(task, description, dueDate, priority) {
+        this.task = task;
         this.description = description;
         this.dueDate = dueDate;
         this.prority = priority;
