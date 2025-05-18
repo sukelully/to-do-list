@@ -1,9 +1,9 @@
 class Task {
-    constructor(task, description, dueDate, priority) {
+    constructor(task, description, dueDate, priority=0) {
         this.task = task;
         this.description = description;
         this.dueDate = dueDate;
-        this.prority = priority;
+        this.priority = priority;
         this.id = crypto.randomUUID();
     }
 }
