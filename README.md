@@ -1,3 +1,3 @@
-# tailwind-template
+# to-do-ish
 
-Tailwind webpack template repository
+Todoish - [Todoist](https://todoist.com/) inspired todo list app
