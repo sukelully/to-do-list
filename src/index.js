@@ -15,7 +15,7 @@ const taskTest2 = new Task(
     2);
 
 tasksArray.push(taskTest);
-// tasksArray.push(taskTest2);
+tasksArray.push(taskTest2);
 
 const displayTasks = (function () {
     const projectsContainer = document.getElementById("projects-container");
@@ -24,7 +24,7 @@ const displayTasks = (function () {
         const taskDiv = document.createElement("div");
         projectsContainer.appendChild(taskDiv);
         taskDiv.id = "task-container";
-        taskDiv.classList.add("border", "border-solid", "border-slate-300", "rounded-lg", "p-4", "flex", "gap-4", "items-start");
+        taskDiv.classList.add("border","border-solid", "border-slate-300", "rounded-lg", "p-4", "flex", "gap-4", "items-start", "shadow-xs", "hover:shadow-md", "transition-shadow", "duration-300", "hover:border-slate-400", "transition-border", "min-w-full", "group");
 
         const list = document.createElement("ul");
 
@@ -32,12 +32,13 @@ const displayTasks = (function () {
         priorityIcon.classList.add("fa-solid", "fa-flag", "py-2");
         switch (task.priority) {
             case 0:
+                priorityIcon.classList.add("text-white")
                 break;
             case 1:
                 priorityIcon.classList.add("text-green-600");
                 break;
             case 2:
-                priorityIcon.classList.add("text-yellow-600");
+                priorityIcon.classList.add("text-amber-500");
                 break;
             case 3:
                 priorityIcon.classList.add("text-red-600");
@@ -65,5 +66,9 @@ const displayTasks = (function () {
             list.appendChild(li);
             taskDiv.appendChild(list);
         });
+        const optionsIcon = document.createElement("i");
+        optionsIcon.classList.add("fa-solid", "fa-ellipsis", "item-end", "ml-auto", "invisible", "group-hover:visible", "cursor-pointer");
+
+        taskDiv.appendChild(optionsIcon);
     }
 })();

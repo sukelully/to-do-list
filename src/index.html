@@ -14,21 +14,25 @@
 </head>
 
 <body class="flex">
-    <main class="flex">
-        <section id="sidebar" class="flex flex-col py-4 px-6 bg-slate-100 min-h-screen w-2/5 gap-4">
-            <button aria-label="Add task" class="flex items-center gap-4">
+    <main class="flex min-w-full">
+        <section id="sidebar" class="flex flex-col py-4 px-6 bg-slate-100 min-h-screen w-1/5 gap-4">
+            <div id="header-container" class="flex flex-row-reverse items-center gap-3 justify-center">
+                <h1 class="text-2xl font-bold tracking-wider">todoish</h1>
+                <i class="fa-solid fa-square-check text-2xl"></i>
+            </div>
+            <button aria-label="Add task" class="flex items-center gap-4 cursor-pointer p-2 hover:bg-slate-300 rounded-md transition-colors duration-200">
                 <i class="fa-solid fa-plus"></i>
                 Add task
             </button>
-            <button aria-label="Calendar" class="flex items-center gap-4">
+            <button aria-label="Calendar" class="flex items-center gap-4 cursor-pointer p-2 hover:bg-slate-300 rounded-md transition-colors duration-200">
                 <i class="fa-regular fa-calendar"></i>
                 Calendar
             </button>
         </section>
 
-        <section id="projects" class="mx-10 my-5">
+        <section id="projects" class="mx-10 my-5 w-full">
             <h1 class="text-3xl font-bold my-4">Projects</h1>
-            <div id="projects-container">
+            <div id="projects-container" class="flex flex-col gap-4 w-64 border">
             </div>
         </section>
     </main>
