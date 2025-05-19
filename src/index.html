@@ -50,7 +50,7 @@
       <form action="" class="flex flex-wrap flex-col w-full gap-2">
         <input type="text" placeholder="Task name" class="outline-none text-lg placeholder-neutral-500" />
         <input type="text" placeholder="Description" class="outline-none text-sm placeholder-neutral-500" />
-        <div class="flex justify-evenly">
+        <div class="flex justify-evenly gap-4">
           <input type="date" name="" id="date-input" class="bg-stone-100 rounded-md px-4 text-neutral-500" />
           <div class="relative">
             <button id="dropdown-btn" class="flex items-center gap-2 px-4 py-2 bg-stone-100 rounded-md cursor-pointer">
@@ -75,6 +75,7 @@
                 High
               </li>
             </ul>
+
             <!-- Hidden select for form submission -->
             <select name="priority-select" id="priority-select" class="hidden">
               <option value="null">None</option>

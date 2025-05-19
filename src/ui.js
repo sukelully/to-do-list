@@ -42,12 +42,6 @@ const initDropdown = () => {
             addTaskModal.classList.add("invisible");
         });
 
-        document.addEventListener("click", (e) => {
-            if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                addTaskModal.classList.add("invisible");
-            }
-        });
-
         addTaskBtn.addEventListener("click", () => {
             console.log("test");
             addTaskModal.classList.toggle("invisible");
