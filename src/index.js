@@ -11,6 +11,16 @@ toggleSidebarBtn.addEventListener("click", () => {
     sidebar.classList.toggle("bg-stone-50");
 });
 
+document.addEventListener("DomContentLoaded", () => {
+    const dropdownBtn = document.getElementById("dropdown-btn");
+    const dropdownMenu = document.getElementById("dropdown-menu");
+    const selectElement = document.getElementById("priority-select");
+
+    dropdownBtn.addEventListener("click", () => {
+        dropdownMenu.classList.toggle("hidden");
+    })
+})
+
 const tasksArray = [];
 const taskTest = new Task(
     "Do laundry",

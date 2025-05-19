@@ -12,3 +12,15 @@
     margin-left: 2rem;
     width: calc(100% - 2rem);
 }
+
+#dropdown-menu {
+    z-index: 10;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#dropdown-menu li {
+    display: flex;
+    align-items: center;
+}

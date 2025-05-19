@@ -33,7 +33,7 @@
             class="flex flex-row-reverse items-center gap-3 justify-center"
           >
             <h1 class="text-2xl font-bold tracking-wider">todoish</h1>
-            <i class="fa-solid fa-square-check text-2xl"></i>
+            <i class="fa-solid fa-square-check text-2xl text-indigo-500"></i>
           </div>
           <button
             id="toggle-sidebar-btn"
@@ -74,27 +74,26 @@
           <input
             type="text"
             placeholder="Task name"
-            class="outline-none text-lg"
+            class="outline-none text-lg placeholder-neutral-500"
           />
           <input
             type="text"
             placeholder="Description"
-            class="outline-none text-sm"
+            class="outline-none text-sm placeholder-neutral-500"
           />
           <div class="flex justify-evenly">
             <input
               type="date"
               name=""
               id="date-input"
-              class="bg-stone-100 rounded-md px-4"
+              class="bg-stone-100 rounded-md px-4 text-neutral-500"
             />
             <div class="relative">
               <button
                 id="dropdown-btn"
                 class="flex items-center gap-2 px-4 py-2 bg-stone-100 rounded-md cursor-pointer"
               >
-                <i class="fa-solid fa-flag text-green-500"></i>
-                <span>Priority</span>
+                <span class="text-neutral-500">Priority</span>
                 <i class="fa-solid fa-chevron-down"></i>
               </button>
               <ul
@@ -124,12 +123,17 @@
                 </li>
               </ul>
               <!-- Hidden select for form submission -->
-              <select name="priority" id="priority" class="hidden">
+              <select name="priority-select" id="priority" class="hidden">
                 <option value="1">Low</option>
                 <option value="2">Medium</option>
                 <option value="3">High</option>
               </select>
             </div>
+          </div>
+          <hr class="text-neutral-300 my-2">
+          <div class="flex justify-evenly">
+            <button id="cancel-btn" class="bg-stone-100 hover:bg-stone-200 px-4 py-2 rounded-md transition-colors duration-200">Cancel</button>
+            <button id="submit-task-btn" class="text-white px-4 py-2 bg-indigo-500 rounded-md hover:bg-indigo-600 transition-colors duration-200">Add task</button>
           </div>
         </form>
       </section>
