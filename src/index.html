@@ -16,7 +16,7 @@
 <body class="flex bg-stone-50">
   <main id="layout" class="flex min-w-full transition-all duration-300 min-h-screen">
     <section id="sidebar"
-      class="flex flex-col py-4 px-6 bg-stone-100 min-h-screen w-1/5 gap-4 transition-all duration-300">
+      class="flex flex-col py-4 px-6 bg-stone-100 min-h-screen min-w-60 gap-4 transition-all duration-300">
       <div id="title-container" class="flex flex-row">
         <div id="header-container" class="flex flex-row-reverse items-center gap-3 justify-center">
           <h1 class="text-2xl font-bold tracking-wider">todoish</h1>
@@ -84,10 +84,10 @@
             </select>
           </div>
         </div>
-        <hr class="text-neutral-300 my-2">
+        <hr class="text-neutral-300 m-2">
         <div class="flex justify-evenly">
-          <button id="cancel-btn"
-            type="button" class="bg-stone-100 hover:bg-stone-200 px-4 py-2 rounded-md transition-colors duration-200">Cancel</button>
+          <button id="cancel-btn" type="button"
+            class="bg-stone-100 hover:bg-stone-200 px-4 py-2 rounded-md transition-colors duration-200">Cancel</button>
           <button id="submit-task-btn"
             class="text-white px-4 py-2 bg-indigo-500 rounded-md hover:bg-indigo-600 transition-colors duration-200">Add
             task</button>

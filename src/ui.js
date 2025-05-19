@@ -15,30 +15,42 @@ const initDropdown = () => {
         const dropdownBtn = document.getElementById("dropdown-btn");
         const dropdownMenu = document.getElementById("dropdown-menu");
         const selectElement = document.getElementById("priority-select");
-    
+        const cancelBtn = document.getElementById("cancel-btn");
+        const addTaskModal = document.getElementById("add-task-modal");
+        const addTaskBtn = document.getElementById("add-task-btn");
+
         dropdownBtn.addEventListener("click", (e) => {
             e.preventDefault();
             dropdownMenu.classList.toggle("hidden");
         });
-    
+
         dropdownMenu.querySelectorAll("li").forEach((item) => {
             item.addEventListener("click", () => {
                 const value = item.dataset.value;
                 const label = item.textContent.trim();
                 const icon = item.querySelector("i").outerHTML;
-    
+
                 dropdownBtn.innerHTML = `${icon}<span>${label}</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
-    
+
                 selectElement.value = value;
-    
-                dropdownMenu.classList.add("hidden");
+
+                dropdownMenu.classList.add("invisible");
             });
         });
-    
+
+        cancelBtn.addEventListener("click", () => {
+            addTaskModal.classList.add("invisible");
+        });
+
         document.addEventListener("click", (e) => {
             if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                dropdownMenu.classList.add("hidden");
+                addTaskModal.classList.add("invisible");
             }
+        });
+
+        addTaskBtn.addEventListener("click", () => {
+            console.log("test");
+            addTaskModal.classList.toggle("invisible");
         });
     });
 }
