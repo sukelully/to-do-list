@@ -1,5 +1,5 @@
 {
-  "name": "tailwind-template",
+  "name": "todoish",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sukelully/tailwind-template.git"
+    "url": "git+https://github.com/sukelully/todoish.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sukelully/tailwind-template/issues"
+    "url": "https://github.com/sukelully/todoish/issues"
   },
-  "homepage": "https://github.com/sukelully/tailwind-template#readme",
+  "homepage": "https://github.com/sukelully/todoish#readme",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "css-loader": "^7.1.2",

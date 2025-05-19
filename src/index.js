@@ -1,25 +1,10 @@
 import "./styles.css";
+import { format } from "date-fns";
 import { Task } from "./task.js";
+import * as UI from "./ui.js";
 
-const toggleSidebarBtn = document.getElementById("toggle-sidebar-btn");
-const layout = document.getElementById("layout");
-const sidebar = document.getElementById("sidebar");
-
-toggleSidebarBtn.addEventListener("click", () => {
-    layout.classList.toggle("hidden-sidebar");
-    sidebar.classList.toggle("bg-stone-100");
-    sidebar.classList.toggle("bg-stone-50");
-});
-
-document.addEventListener("DomContentLoaded", () => {
-    const dropdownBtn = document.getElementById("dropdown-btn");
-    const dropdownMenu = document.getElementById("dropdown-menu");
-    const selectElement = document.getElementById("priority-select");
-
-    dropdownBtn.addEventListener("click", () => {
-        dropdownMenu.classList.toggle("hidden");
-    })
-})
+UI.initSidebar();
+UI.initDropdown();
 
 const tasksArray = [];
 const taskTest = new Task(
@@ -37,45 +22,11 @@ const taskTest2 = new Task(
 tasksArray.push(taskTest);
 tasksArray.push(taskTest2);
 
-const displayMonth = (month) => {
-    switch (month) {
-        case 0:
-            return "Jan";
-        case 1:
-            return "Feb";
-        case 2:
-            return "Mar";
-        case 3:
-            return "Apr";
-        case 4:
-            return "May";
-        case 5:
-            return "Jun";
-        case 6:
-            return "Jul";
-        case 7:
-            return "Aug";
-        case 8:
-            return "Sep";
-        case 9:
-            return "Oct";
-        case 10:
-            return "Nov";
-        case 11:
-            return "Dec";
-        default:
-            return "Date error: Invalid month";
-    }
-}
-
-const displayYear = (year) => {
+const formatDueDate = (date) => {
     const currentYear = new Date().getFullYear();
+    const formatStr = date.getFullYear() !== currentYear ? "d MMM yyyy" : "d MMM";
+    return format(date, formatStr);
 
-    if (year != currentYear) {
-        return year;
-    } else {
-        return "";
-    }
 }
 
 const displayTasks = (function () {
@@ -92,7 +43,7 @@ const displayTasks = (function () {
         const priorityIcon = document.createElement("i");
         priorityIcon.classList.add("fa-solid", "fa-flag", "py-2");
         switch (task.priority) {
-            case 0:
+            case null:
                 priorityIcon.classList.add("text-white")
                 break;
             case 1:
@@ -119,7 +70,7 @@ const displayTasks = (function () {
                     li.classList.add("text-slate-400", "text-sm");
                     break;
                 case "dueDate":
-                    li.textContent = `${key === "dueDate" ? `${value.getDate()} ${displayMonth(value.getMonth())} ${displayYear(value.getFullYear())}` : value}`;
+                    li.textContent = formatDueDate(value);
                     li.classList.add("text-slate-400", "text-sm")
                     break;
                 default:
