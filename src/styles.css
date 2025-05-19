@@ -3,3 +3,12 @@
 * {
     font-family: "Outfit", sans-serif;
 }
+
+.hidden-sidebar #sidebar {
+    margin-left: -15%;
+}
+
+.hidden-sidebar #projects {
+    margin-left: 2rem;
+    width: calc(100% - 2rem);
+}

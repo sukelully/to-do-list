@@ -1,6 +1,15 @@
 import "./styles.css";
 import { Task } from "./task.js";
 
+const toggleSidebarBtn = document.getElementById("toggle-sidebar-btn");
+const layout = document.getElementById("layout");
+const sidebar = document.getElementById("sidebar");
+
+toggleSidebarBtn.addEventListener("click", () => {
+    layout.classList.toggle("hidden-sidebar");
+    sidebar.classList.toggle("bg-stone-100");
+    sidebar.classList.toggle("bg-stone-50");
+});
 const tasksArray = [];
 const taskTest = new Task(
     "Do laundry",
@@ -66,9 +75,11 @@ const displayTasks = (function () {
             list.appendChild(li);
             taskDiv.appendChild(list);
         });
+        const optionsButton = document.createElement("button");
         const optionsIcon = document.createElement("i");
         optionsIcon.classList.add("fa-solid", "fa-ellipsis", "item-end", "ml-auto", "invisible", "group-hover:visible", "cursor-pointer");
 
-        taskDiv.appendChild(optionsIcon);
+        optionsButton.appendChild(optionsIcon);
+        taskDiv.appendChild(optionsButton);
     }
 })();

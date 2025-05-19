@@ -13,18 +13,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
-<body class="flex">
-    <main class="flex min-w-full">
-        <section id="sidebar" class="flex flex-col py-4 px-6 bg-slate-100 min-h-screen w-1/5 gap-4">
-            <div id="header-container" class="flex flex-row-reverse items-center gap-3 justify-center">
-                <h1 class="text-2xl font-bold tracking-wider">todoish</h1>
-                <i class="fa-solid fa-square-check text-2xl"></i>
+<body class="flex bg-stone-50">
+    <main id="layout" class="flex min-w-full transition-all duration-300 min-h-screen">
+        <section id="sidebar" class="flex flex-col py-4 px-6 bg-stone-100 min-h-screen w-1/5 gap-4 transition-all duration-300">
+            
+            <div id="title-container" class="flex flex-row">
+                <div id="header-container" class="flex flex-row-reverse items-center gap-3 justify-center">
+                    <h1 class="text-2xl font-bold tracking-wider">todoish</h1>
+                    <i class="fa-solid fa-square-check text-2xl"></i>
+                </div>
+                <button id="toggle-sidebar-btn" aria-label="Show/hide sidebar" class="ml-auto cursor-pointer">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
-            <button aria-label="Add task" class="flex items-center gap-4 cursor-pointer p-2 hover:bg-slate-300 rounded-md transition-colors duration-200">
+            
+            <button aria-label="Add task" class="flex items-center gap-4 cursor-pointer p-2 hover:bg-stone-300 rounded-md transition-colors duration-200">
                 <i class="fa-solid fa-plus"></i>
                 Add task
             </button>
-            <button aria-label="Calendar" class="flex items-center gap-4 cursor-pointer p-2 hover:bg-slate-300 rounded-md transition-colors duration-200">
+            <button aria-label="Calendar" class="flex items-center gap-4 cursor-pointer p-2 hover:bg-stone-300 rounded-md transition-colors duration-200">
                 <i class="fa-regular fa-calendar"></i>
                 Calendar
             </button>
