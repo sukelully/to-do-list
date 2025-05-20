@@ -44,13 +44,12 @@ const initDropdown = () => {
                 const icon = item.querySelector("i").outerHTML;
                 console.log(value);
 
-                if (value === null) {
+                if (value === "null") {
                     dropdownBtn.innerHTML = `<span>Priority</span><i class="fa-solid fa-chevron-down ml-auto"></i>"`;
                 } else {
                     dropdownBtn.innerHTML = `${icon}<span>${label}</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
                 }
                 
-
                 selectElement.value = value;
 
                 dropdownMenu.classList.toggle("hidden");

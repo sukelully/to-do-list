@@ -1,7 +1,7 @@
 import "./styles.css";
-import { format } from "date-fns";
 import { Task } from "./task.js";
 import  { initSidebar, initDropdown, updateDateInput } from "./ui.js";
+import { formatDueDate, isPastDue } from "./date.js";
 
 initSidebar();
 initDropdown();
@@ -17,17 +17,11 @@ const taskTest = new Task(
 const taskTest2 = new Task(
     "Do dishes",
     "Walk dog idk",
-    new Date(2026, 6, 13),
+    new Date(2024, 6, 13),
     2);
 
 tasksArray.push(taskTest);
 tasksArray.push(taskTest2);
-
-const formatDueDate = (date) => {
-    const currentYear = new Date().getFullYear();
-    const formatStr = date.getFullYear() !== currentYear ? "d MMM yyyy" : "d MMM";
-    return format(date, formatStr);
-}
 
 const displayTasks = (function () {
     const projectsContainer = document.getElementById("projects-container");
@@ -71,7 +65,11 @@ const displayTasks = (function () {
                     break;
                 case "dueDate":
                     li.textContent = formatDueDate(value);
-                    li.classList.add("text-slate-400", "text-sm")
+                    if (isPastDue(value)) {
+                        li.classList.add("text-red-400", "text-sm");
+                    } else {
+                        li.classList.add("text-slate-400", "text-sm");
+                    }
                     break;
                 default:
                     break;
