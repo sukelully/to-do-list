@@ -47,11 +47,11 @@
 
     <section id="add-task-modal"
       class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-xl shadow-2xl w-1/3 min-w-fit">
-      <form action="" class="flex flex-wrap flex-col w-full gap-2">
-        <input type="text" placeholder="Task name" class="outline-none text-lg placeholder-neutral-500" />
-        <input type="text" placeholder="Description" class="outline-none text-sm placeholder-neutral-500" />
+      <form id="add-task-form" class="flex flex-wrap flex-col w-full gap-2">
+        <input type="text" id="task-name-input" name="name" placeholder="Task name" class="outline-none text-lg placeholder-neutral-500" />
+        <input type="text" id="task-description-input" name="description" placeholder="Description" class="outline-none text-sm placeholder-neutral-500" />
         <div class="flex justify-evenly gap-4">
-          <input type="date" name="" id="date-input" class="bg-stone-100 rounded-md px-4 text-neutral-500" />
+          <input type="date" name="date" id="date-input" class="bg-stone-100 rounded-md px-4 text-neutral-500" />
           <div class="relative">
             <button id="dropdown-btn" class="flex items-center gap-2 px-4 py-2 bg-stone-100 rounded-md cursor-pointer">
               <span class="text-neutral-500">Priority</span>
@@ -89,9 +89,8 @@
         <div class="flex justify-evenly">
           <button id="cancel-btn" type="button"
             class="bg-stone-100 hover:bg-stone-200 px-4 py-2 rounded-md transition-colors duration-200">Cancel</button>
-          <button id="submit-task-btn"
-            class="text-white px-4 py-2 bg-indigo-500 rounded-md hover:bg-indigo-600 transition-colors duration-200">Add
-            task</button>
+          <input type="submit" id="add-task-btn" value="Add task"
+            class="text-white px-4 py-2 bg-indigo-500 rounded-md hover:bg-indigo-600 transition-colors duration-200"></input>
         </div>
       </form>
     </section>

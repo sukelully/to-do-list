@@ -1,6 +1,6 @@
 import "./styles.css";
 import { Task } from "./task.js";
-import  { initSidebar, initDropdown, updateDateInput } from "./ui.js";
+import { initSidebar, initDropdown, updateDateInput } from "./ui.js";
 import { formatDueDate, isPastDue } from "./date.js";
 
 initSidebar();
@@ -23,14 +23,15 @@ const taskTest2 = new Task(
 tasksArray.push(taskTest);
 tasksArray.push(taskTest2);
 
-const displayTasks = (function () {
+const displayTasks = () => {
     const projectsContainer = document.getElementById("projects-container");
+    projectsContainer.innerHTML = "";
 
     for (const task of tasksArray) {
         const taskDiv = document.createElement("div");
         projectsContainer.appendChild(taskDiv);
         taskDiv.id = "task-container";
-        taskDiv.classList.add("border","border-solid", "border-slate-300", "rounded-lg", "p-4", "flex", "gap-4", "items-start", "shadow-xs", "hover:shadow-md", "duration-300", "hover:border-slate-400", "transition-all", "min-w-full", "group");
+        taskDiv.classList.add("border", "border-solid", "border-slate-300", "rounded-lg", "p-4", "flex", "gap-4", "items-start", "shadow-xs", "hover:shadow-md", "duration-300", "hover:border-slate-400", "transition-all", "min-w-full", "group");
 
         const list = document.createElement("ul");
 
@@ -86,8 +87,22 @@ const displayTasks = (function () {
         optionsButton.appendChild(optionsIcon);
         taskDiv.appendChild(optionsButton);
     }
+};
+
+displayTasks();
+
+const addTask = (function () {
+    const form = document.getElementById("add-task-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const task = {};
+
+        formData.forEach((value, key) => {
+            task[key] = value;
+        });
+
+        tasksArray.push(new Task(task.name, task.description, new Date(task.date), task.priority));
+        displayTasks();
+    });
 })();
-
-const addTask = () => {
-
-}

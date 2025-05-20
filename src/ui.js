@@ -11,16 +11,12 @@ const initSidebar = () => {
 }
 
 // Update text color to display whether a date is selected or not
-const updateDateInput = () => {
-    const dateInput = document.getElementById("date-input");
-
-    dateInput.addEventListener("change", () => {
-        if (dateInput.value !== "") {
-            dateInput.classList.remove("text-neutral-500");
-        } else {
-            dateInput.classList.add("text-neutral-500");
-        }
-    });
+const updateDateInput = (dateInput) => {
+    if (dateInput.value !== "") {
+        dateInput.classList.remove("text-neutral-500");
+    } else {
+        dateInput.classList.add("text-neutral-500");
+    }
 }
 
 const initDropdown = () => {
@@ -31,25 +27,29 @@ const initDropdown = () => {
         const cancelBtn = document.getElementById("cancel-btn");
         const addTaskModal = document.getElementById("add-task-modal");
         const addTaskBtn = document.getElementById("add-task-btn");
+        const dateInput = document.getElementById("date-input");
 
         dropdownBtn.addEventListener("click", (e) => {
             e.preventDefault();
             dropdownMenu.classList.toggle("hidden");
         });
 
+        dateInput.addEventListener("change", () => {
+            updateDateInput(dateInput);
+        })
+
         dropdownMenu.querySelectorAll("li").forEach((item) => {
             item.addEventListener("click", () => {
                 const value = item.dataset.value;
                 const label = item.textContent.trim();
                 const icon = item.querySelector("i").outerHTML;
-                console.log(value);
 
                 if (value === "null") {
-                    dropdownBtn.innerHTML = `<span>Priority</span><i class="fa-solid fa-chevron-down ml-auto"></i>"`;
+                    dropdownBtn.innerHTML = `<span class="text-neutral-500">Priority</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
                 } else {
                     dropdownBtn.innerHTML = `${icon}<span>${label}</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
                 }
-                
+
                 selectElement.value = value;
 
                 dropdownMenu.classList.toggle("hidden");
@@ -57,6 +57,7 @@ const initDropdown = () => {
         });
 
         cancelBtn.addEventListener("click", () => {
+            clearTaskInput();
             addTaskModal.classList.add("invisible");
         });
 
@@ -64,6 +65,14 @@ const initDropdown = () => {
             addTaskModal.classList.toggle("invisible");
         });
     });
+}
+
+const clearTaskInput = () => {
+    const dateInput = document.getElementById("date-input");
+    dateInput.value = "";
+    updateDateInput(dateInput);
+    document.getElementById("task-name-input").value = "";
+    document.getElementById("task-description-input").value = "";
 }
 
 export { initSidebar, initDropdown, updateDateInput }
