@@ -10,6 +10,19 @@ const initSidebar = () => {
     });
 }
 
+// Update text color to display whether a date is selected or not
+const updateDateInput = () => {
+    const dateInput = document.getElementById("date-input");
+
+    dateInput.addEventListener("change", () => {
+        if (dateInput.value !== "") {
+            dateInput.classList.remove("text-neutral-500");
+        } else {
+            dateInput.classList.add("text-neutral-500");
+        }
+    });
+}
+
 const initDropdown = () => {
     document.addEventListener("DOMContentLoaded", () => {
         const dropdownBtn = document.getElementById("dropdown-btn");
@@ -29,12 +42,18 @@ const initDropdown = () => {
                 const value = item.dataset.value;
                 const label = item.textContent.trim();
                 const icon = item.querySelector("i").outerHTML;
+                console.log(value);
 
-                dropdownBtn.innerHTML = `${icon}<span>${label}</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
+                if (value === null) {
+                    dropdownBtn.innerHTML = `<span>Priority</span><i class="fa-solid fa-chevron-down ml-auto"></i>"`;
+                } else {
+                    dropdownBtn.innerHTML = `${icon}<span>${label}</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
+                }
+                
 
                 selectElement.value = value;
 
-                dropdownMenu.classList.add("invisible");
+                dropdownMenu.classList.toggle("hidden");
             });
         });
 
@@ -43,10 +62,9 @@ const initDropdown = () => {
         });
 
         addTaskBtn.addEventListener("click", () => {
-            console.log("test");
             addTaskModal.classList.toggle("invisible");
         });
     });
 }
 
-export { initSidebar, initDropdown }
+export { initSidebar, initDropdown, updateDateInput }

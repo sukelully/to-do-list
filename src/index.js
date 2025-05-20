@@ -1,10 +1,11 @@
 import "./styles.css";
 import { format } from "date-fns";
 import { Task } from "./task.js";
-import * as UI from "./ui.js";
+import  { initSidebar, initDropdown, updateDateInput } from "./ui.js";
 
-UI.initSidebar();
-UI.initDropdown();
+initSidebar();
+initDropdown();
+updateDateInput();
 
 const tasksArray = [];
 const taskTest = new Task(
@@ -26,7 +27,6 @@ const formatDueDate = (date) => {
     const currentYear = new Date().getFullYear();
     const formatStr = date.getFullYear() !== currentYear ? "d MMM yyyy" : "d MMM";
     return format(date, formatStr);
-
 }
 
 const displayTasks = (function () {
