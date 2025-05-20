@@ -4,6 +4,7 @@ import * as ui from "./ui.js";
 
 ui.initSidebar();
 ui.initDropdown();
+ui.displayContent();
 
 const tasksArray = [];
 const taskTest = new Task(

@@ -1,27 +1,41 @@
 import { formatDueDate, isPastDue } from "./date.js";
 
+const setDropdownContent = (iconHTML, label) => {
+    return `${iconHTML}<span>${label}</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
+};
+
+const resetDropdownContent = () => {
+    return `<span class="text-neutral-500">Priority</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
+};
+
 const initSidebar = () => {
     document.addEventListener("DOMContentLoaded", () => {
         const toggleSidebarBtn = document.getElementById("toggle-sidebar-btn");
         const layout = document.getElementById("layout");
         const sidebar = document.getElementById("sidebar");
+        const addTaskBtn = document.getElementById("add-task-btn");
+        const calendarBtn = document.getElementById("calendar-btn");
     
         toggleSidebarBtn.addEventListener("click", () => {
             layout.classList.toggle("hidden-sidebar");
             sidebar.classList.toggle("bg-stone-100");
             sidebar.classList.toggle("bg-stone-50");
+            addTaskBtn.classList.toggle("invisible");
+            calendarBtn.classList.toggle("invisible");
         });
     });
-}
+};
+
+const displayContent = () => {
+    window.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.remove("invisible");
+    });
+};
 
 // Update text color to display whether a date is selected or not
 const updateDateInput = (dateInput) => {
-    if (dateInput.value !== "") {
-        dateInput.classList.remove("text-neutral-500");
-    } else {
-        dateInput.classList.add("text-neutral-500");
-    }
-}
+    dateInput.classList.toggle("text-neutral-500", dateInput.value === "");
+};
 
 const initDropdown = () => {
     document.addEventListener("DOMContentLoaded", () => {
@@ -38,9 +52,7 @@ const initDropdown = () => {
             dropdownMenu.classList.toggle("hidden");
         });
 
-        dateInput.addEventListener("change", () => {
-            updateDateInput(dateInput);
-        })
+        dateInput.addEventListener("change", () => updateDateInput(dateInput));
 
         dropdownMenu.querySelectorAll("li").forEach((item) => {
             item.addEventListener("click", () => {
@@ -49,9 +61,9 @@ const initDropdown = () => {
                 const icon = item.querySelector("i").outerHTML;
 
                 if (value === "null") {
-                    dropdownBtn.innerHTML = `<span class="text-neutral-500">Priority</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
+                    dropdownBtn.innerHTML = resetDropdownContent();
                 } else {
-                    dropdownBtn.innerHTML = `${icon}<span>${label}</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
+                    dropdownBtn.innerHTML = setDropdownContent(icon, label);
                 }
 
                 selectElement.value = value;
@@ -70,84 +82,74 @@ const initDropdown = () => {
             addTaskModal.classList.toggle("hidden");
         });
     });
-}
+};
 
 const clearTaskInput = () => {
     const dateInput = document.getElementById("date-input");
-    dateInput.value = "";
-    updateDateInput(dateInput);
-
-    document.getElementById("task-name-input").value = "";
-    document.getElementById("task-description-input").value = "";
-
+    const taskInput = document.getElementById("task-name-input");
+    const descInput = document.getElementById("task-description-input");
     const dropdownBtn = document.getElementById("dropdown-btn");
-    dropdownBtn.innerHTML = `<span class="text-neutral-500">Priority</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
+
+    dateInput.value = "";
+    taskInput.value = "";
+    descInput.value = "";
+    updateDateInput(dateInput);
+    dropdownBtn.innerHTML = resetDropdownContent();
+};
+
+const getPriorityColor = (priority) => {
+    switch (priority) {
+        case 1: return "text-green-600";
+        case 2: return "text-amber-500";
+        case 3: return "text-red-600";
+        default: return "text-white";
+    }
 }
+
+const createTaskElement = (task) => {
+    const container = document.createElement("div");
+    container.id = "task-container";
+    container.classList.add("border", "border-solid", "border-slate-300", "rounded-lg", "p-4", "flex", "gap-4", "items-start", "shadow-xs", "hover:shadow-md", "duration-300", "hover:border-slate-400", "transition-all", "min-w-full", "group");
+
+    const priorityIcon = document.createElement("i");
+    priorityIcon.classList.add("fa-solid", "fa-circle", "py-2", getPriorityColor(task.priority));
+    container.appendChild(priorityIcon);
+
+    const list = document.createElement("ul");
+
+    const taskFields = {
+        task: ["font-bold"],
+        description: ["text-slate-400", "text-sm"],
+        dueDate: isPastDue(task.dueDate) ? ["text-red-400", "text-sm"] : ["text-slate-400", "text-sm"]
+    };
+
+    for (const [key, value] of Object.entries(task)) {
+        if (!(key in taskFields)) continue;
+
+        const li = document.createElement("li");
+        li.textContent = key === "dueDate" ? formatDueDate(value) : value;
+        li.classList.add(...taskFields[key]);
+        list.appendChild(li);
+    }
+
+    container.appendChild(list);
+
+    const optionsBtn = document.createElement("button");
+    optionsBtn.classList.add("ml-auto");
+
+    const optionsIcon = document.createElement("i");
+    optionsIcon.classList.add("fa-solid", "fa-ellipsis", "item-end", "invisible", "group-hover:visible", "cursor-pointer");
+
+    optionsBtn.appendChild(optionsIcon);
+    container.appendChild(optionsBtn);
+
+    return container;
+};
 
 const displayTasks = (tasksArray) => {
     const projectsContainer = document.getElementById("projects-container");
     projectsContainer.innerHTML = "";
+    tasksArray.forEach(task => projectsContainer.appendChild(createTaskElement(task)));
+}
 
-    for (const task of tasksArray) {
-        const taskDiv = document.createElement("div");
-        projectsContainer.appendChild(taskDiv);
-        taskDiv.id = "task-container";
-        taskDiv.classList.add("border", "border-solid", "border-slate-300", "rounded-lg", "p-4", "flex", "gap-4", "items-start", "shadow-xs", "hover:shadow-md", "duration-300", "hover:border-slate-400", "transition-all", "min-w-full", "group");
-
-        const list = document.createElement("ul");
-
-        const priorityIcon = document.createElement("i");
-        priorityIcon.classList.add("fa-solid", "fa-flag", "py-2");
-        switch (task.priority) {
-            case null:
-                priorityIcon.classList.add("text-white")
-                break;
-            case 1:
-                priorityIcon.classList.add("text-green-600");
-                break;
-            case 2:
-                priorityIcon.classList.add("text-amber-500");
-                break;
-            case 3:
-                priorityIcon.classList.add("text-red-600");
-                break;
-        }
-        taskDiv.appendChild(priorityIcon);
-
-        Object.entries(task).forEach(([key, value]) => {
-            const li = document.createElement("li");
-            switch (key) {
-                case "task":
-                    li.textContent = `${value}`
-                    li.classList.add("font-bold");
-                    break;
-                case "description":
-                    li.textContent = `${value}`
-                    li.classList.add("text-slate-400", "text-sm");
-                    break;
-                case "dueDate":
-                    li.textContent = formatDueDate(value);
-                    if (isPastDue(value)) {
-                        li.classList.add("text-red-400", "text-sm");
-                    } else {
-                        li.classList.add("text-slate-400", "text-sm");
-                    }
-                    break;
-                default:
-                    break;
-            }
-            list.appendChild(li);
-            taskDiv.appendChild(list);
-        });
-        const optionsButton = document.createElement("button");
-        optionsButton.classList.add("ml-auto")
-
-        const optionsIcon = document.createElement("i");
-        optionsIcon.classList.add("fa-solid", "fa-ellipsis", "item-end", "invisible", "group-hover:visible", "cursor-pointer");
-
-        optionsButton.appendChild(optionsIcon);
-        taskDiv.appendChild(optionsButton);
-    }
-};
-
-export { initSidebar, initDropdown, updateDateInput, displayTasks }
+export { initSidebar, initDropdown, updateDateInput, displayTasks, displayContent }
