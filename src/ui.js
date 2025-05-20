@@ -99,7 +99,7 @@ const getPriorityColor = (priority) => {
     }
 }
 
-const createTaskElement = (task) => {
+const createTaskElement = (task, tasksArray) => {
     const container = document.createElement("div");
     container.id = "task-container";
     container.classList.add("border", "border-solid", "border-slate-300", "rounded-lg", "p-4", "flex", "gap-4", "items-start", "shadow-xs", "hover:shadow-md", "duration-300", "hover:border-slate-400", "transition-all", "min-w-full", "group");
@@ -111,7 +111,7 @@ const createTaskElement = (task) => {
     const list = document.createElement("ul");
 
     const taskFields = {
-        task: ["font-bold"],
+        task: ["font-normal"],
         description: ["text-slate-400", "text-sm"],
         dueDate: isPastDue(task.dueDate) ? ["text-red-400", "text-sm"] : ["text-slate-400", "text-sm"]
     };
@@ -145,7 +145,11 @@ const createTaskElement = (task) => {
 const displayTasks = (tasksArray) => {
     const projectsContainer = document.getElementById("projects-container");
     projectsContainer.innerHTML = "";
-    tasksArray.forEach(task => projectsContainer.appendChild(createTaskElement(task)));
+    tasksArray.forEach(task => projectsContainer.appendChild(createTaskElement(task, tasksArray)));
+};
+
+const removeTask = (task, tasksArray) => {
+
 }
 
 export { initSidebar, initDropdown, updateDateInput, displayTasks }
