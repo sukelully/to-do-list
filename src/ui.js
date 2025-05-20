@@ -1,3 +1,5 @@
+import { formatDueDate, isPastDue } from "./date.js";
+
 const initSidebar = () => {
     const toggleSidebarBtn = document.getElementById("toggle-sidebar-btn");
     const layout = document.getElementById("layout");
@@ -58,11 +60,11 @@ const initDropdown = () => {
 
         cancelBtn.addEventListener("click", () => {
             clearTaskInput();
-            addTaskModal.classList.add("invisible");
+            addTaskModal.classList.add("hidden");
         });
 
         addTaskBtn.addEventListener("click", () => {
-            addTaskModal.classList.toggle("invisible");
+            addTaskModal.classList.toggle("hidden");
         });
     });
 }
@@ -71,8 +73,78 @@ const clearTaskInput = () => {
     const dateInput = document.getElementById("date-input");
     dateInput.value = "";
     updateDateInput(dateInput);
+
     document.getElementById("task-name-input").value = "";
     document.getElementById("task-description-input").value = "";
+
+    const dropdownBtn = document.getElementById("dropdown-btn");
+    dropdownBtn.innerHTML = `<span class="text-neutral-500">Priority</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
 }
 
-export { initSidebar, initDropdown, updateDateInput }
+const displayTasks = (tasksArray) => {
+    const projectsContainer = document.getElementById("projects-container");
+    projectsContainer.innerHTML = "";
+
+    for (const task of tasksArray) {
+        const taskDiv = document.createElement("div");
+        projectsContainer.appendChild(taskDiv);
+        taskDiv.id = "task-container";
+        taskDiv.classList.add("border", "border-solid", "border-slate-300", "rounded-lg", "p-4", "flex", "gap-4", "items-start", "shadow-xs", "hover:shadow-md", "duration-300", "hover:border-slate-400", "transition-all", "min-w-full", "group");
+
+        const list = document.createElement("ul");
+
+        const priorityIcon = document.createElement("i");
+        priorityIcon.classList.add("fa-solid", "fa-flag", "py-2");
+        switch (task.priority) {
+            case null:
+                priorityIcon.classList.add("text-white")
+                break;
+            case 1:
+                priorityIcon.classList.add("text-green-600");
+                break;
+            case 2:
+                priorityIcon.classList.add("text-amber-500");
+                break;
+            case 3:
+                priorityIcon.classList.add("text-red-600");
+                break;
+        }
+        taskDiv.appendChild(priorityIcon);
+
+        Object.entries(task).forEach(([key, value]) => {
+            const li = document.createElement("li");
+            switch (key) {
+                case "task":
+                    li.textContent = `${value}`
+                    li.classList.add("font-bold");
+                    break;
+                case "description":
+                    li.textContent = `${value}`
+                    li.classList.add("text-slate-400", "text-sm");
+                    break;
+                case "dueDate":
+                    li.textContent = formatDueDate(value);
+                    if (isPastDue(value)) {
+                        li.classList.add("text-red-400", "text-sm");
+                    } else {
+                        li.classList.add("text-slate-400", "text-sm");
+                    }
+                    break;
+                default:
+                    break;
+            }
+            list.appendChild(li);
+            taskDiv.appendChild(list);
+        });
+        const optionsButton = document.createElement("button");
+        optionsButton.classList.add("ml-auto")
+
+        const optionsIcon = document.createElement("i");
+        optionsIcon.classList.add("fa-solid", "fa-ellipsis", "item-end", "invisible", "group-hover:visible", "cursor-pointer");
+
+        optionsButton.appendChild(optionsIcon);
+        taskDiv.appendChild(optionsButton);
+    }
+};
+
+export { initSidebar, initDropdown, updateDateInput, displayTasks }
