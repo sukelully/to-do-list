@@ -23,7 +23,7 @@ tasksArray.push(taskTest2);
 
 ui.displayTasks(tasksArray);
 
-const addTask = (function () {
+const addTaskListener = (function () {
     const form = document.getElementById("add-task-form").addEventListener("submit", function (e) {
         e.preventDefault();
 

@@ -11,6 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../public/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../public/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../public/favicon/favicon-16x16.png">
+  <link rel="manifest" href="../public/favicon/site.webmanifest">
 </head>
 
 <body class="flex bg-stone-50">
@@ -48,7 +54,7 @@
     <section id="add-task-modal"
       class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-xl shadow-2xl w-1/3 min-w-fit">
       <form id="add-task-form" class="flex flex-wrap flex-col w-full gap-2">
-        <input type="text" id="task-name-input" name="name" placeholder="Task name" class="outline-none text-lg placeholder-neutral-500" />
+        <input type="text" id="task-name-input" name="name" placeholder="Task name" class="outline-none text-lg placeholder-neutral-500" required />
         <input type="text" id="task-description-input" name="description" placeholder="Description" class="outline-none text-sm placeholder-neutral-500" />
         <div class="flex justify-evenly gap-4">
           <input type="date" name="date" id="date-input" class="bg-stone-100 rounded-md px-4 text-neutral-500" />
