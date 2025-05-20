@@ -148,4 +148,4 @@ const displayTasks = (tasksArray) => {
     tasksArray.forEach(task => projectsContainer.appendChild(createTaskElement(task)));
 }
 
-export { initSidebar, initDropdown, updateDateInput, displayTasks, displayContent }
+export { initSidebar, initDropdown, updateDateInput, displayTasks }
