@@ -136,6 +136,9 @@ const createTaskElement = (task) => {
 
     const optionsBtn = document.createElement("button");
     optionsBtn.classList.add("ml-auto");
+    optionsBtn.addEventListener("click", () => {
+        console.log(task.id);
+    });
 
     const optionsIcon = document.createElement("i");
     optionsIcon.classList.add("fa-solid", "fa-ellipsis", "item-end", "invisible", "group-hover:visible", "cursor-pointer");
