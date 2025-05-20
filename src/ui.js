@@ -1,14 +1,16 @@
 import { formatDueDate, isPastDue } from "./date.js";
 
 const initSidebar = () => {
-    const toggleSidebarBtn = document.getElementById("toggle-sidebar-btn");
-    const layout = document.getElementById("layout");
-    const sidebar = document.getElementById("sidebar");
-
-    toggleSidebarBtn.addEventListener("click", () => {
-        layout.classList.toggle("hidden-sidebar");
-        sidebar.classList.toggle("bg-stone-100");
-        sidebar.classList.toggle("bg-stone-50");
+    document.addEventListener("DOMContentLoaded", () => {
+        const toggleSidebarBtn = document.getElementById("toggle-sidebar-btn");
+        const layout = document.getElementById("layout");
+        const sidebar = document.getElementById("sidebar");
+    
+        toggleSidebarBtn.addEventListener("click", () => {
+            layout.classList.toggle("hidden-sidebar");
+            sidebar.classList.toggle("bg-stone-100");
+            sidebar.classList.toggle("bg-stone-50");
+        });
     });
 }
 
@@ -64,6 +66,7 @@ const initDropdown = () => {
         });
 
         addTaskBtn.addEventListener("click", () => {
+            clearTaskInput();
             addTaskModal.classList.toggle("hidden");
         });
     });
