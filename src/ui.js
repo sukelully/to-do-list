@@ -25,13 +25,6 @@ const initSidebar = () => {
         });
     });
 };
-
-const displayContent = () => {
-    window.addEventListener("DOMContentLoaded", () => {
-        document.body.classList.remove("invisible");
-    });
-};
-
 // Update text color to display whether a date is selected or not
 const updateDateInput = (dateInput) => {
     dateInput.classList.toggle("text-neutral-500", dateInput.value === "");
