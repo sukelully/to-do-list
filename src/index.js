@@ -37,6 +37,6 @@ const addTaskListener = (function () {
         tasksArray.push(new Task(task.name, task.description, new Date(task.date), task.priority));
         ui.displayTasks(tasksArray);
 
-        document.getElementById("add-task-modal").classList.toggle("hidden");
+        document.getElementById("add-task-modal").classList.toggle("invisible");
     });
 })();

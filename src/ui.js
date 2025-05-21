@@ -127,28 +127,59 @@ const createTaskElement = (task, tasksArray) => {
 
     container.appendChild(list);
 
-    const optionsBtn = document.createElement("button");
-    optionsBtn.classList.add("ml-auto");
-    optionsBtn.addEventListener("click", () => {
-        console.log(task.id);
-        removeTask(task.id, tasksArray);
+    const optionsContainer = document.createElement("div");
+    optionsContainer.classList.add("ml-auto", "h-2xl", "flex", "flex-col");
+
+    const editBtn = createOptionsBtn("fa-pen-to-square");
+    const deleteBtn = createOptionsBtn("fa-trash");
+
+    deleteBtn.addEventListener("click", () => {
+        // removeTask(task.id, tasksArray);
+        showDeleteTaskModal(task, tasksArray);
     });
 
-    const optionsIcon = document.createElement("i");
-    optionsIcon.classList.add("fa-solid", "fa-ellipsis", "item-end", "invisible", "group-hover:visible", "cursor-pointer");
-
-    optionsBtn.appendChild(optionsIcon);
-    container.appendChild(optionsBtn);
+    optionsContainer.appendChild(deleteBtn);
+    optionsContainer.appendChild(editBtn);
+    container.appendChild(optionsContainer);
 
     return container;
 };
 
+// Create edit / delete btn for task elements
+const createOptionsBtn = (iconString) => {
+    const btn = document.createElement("button");
+    btn.classList.add("ml-auto", "invisible", "group-hover:visible", "cursor-pointer");
+
+    const icon = document.createElement("i");
+    icon.classList.add("fa-solid", `${iconString}`);
+
+    btn.appendChild(icon);
+
+    return btn;
+}
+
+const showDeleteTaskModal = (task, tasksArray) => {
+    const deleteTasksModal = document.getElementById("delete-task-modal");
+    deleteTasksModal.classList.toggle("invisible");
+
+    const deleteTaskSpan = document.getElementById("delete-task-span");
+    deleteTaskSpan.textContent = `${task.task}`;
+
+    const cancelDeleteBtn = document.getElementById("cancel-delete-btn");
+    cancelDeleteBtn.addEventListener("click", () => {
+        console.log("test");
+        deleteTasksModal.classList.toggle("invisible")}
+    );
+}
+
+// Iterate through tasksArray and display in the DOM
 const displayTasks = (tasksArray) => {
     const projectsContainer = document.getElementById("projects-container");
     projectsContainer.innerHTML = "";
     tasksArray.forEach(task => projectsContainer.appendChild(createTaskElement(task, tasksArray)));
 };
 
+// Remove specified task from tasksArray
 const removeTask = (id, tasksArray) => {
     const taskIndex = tasksArray.findIndex(task => task.id === id);
     if (taskIndex !== -1) {
