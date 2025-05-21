@@ -131,6 +131,7 @@ const createTaskElement = (task, tasksArray) => {
     optionsBtn.classList.add("ml-auto");
     optionsBtn.addEventListener("click", () => {
         console.log(task.id);
+        removeTask(task.id, tasksArray);
     });
 
     const optionsIcon = document.createElement("i");
@@ -148,8 +149,12 @@ const displayTasks = (tasksArray) => {
     tasksArray.forEach(task => projectsContainer.appendChild(createTaskElement(task, tasksArray)));
 };
 
-const removeTask = (task, tasksArray) => {
-
+const removeTask = (id, tasksArray) => {
+    const taskIndex = tasksArray.findIndex(task => task.id === id);
+    if (taskIndex !== -1) {
+        tasksArray.splice(taskIndex, 1);
+    }
+    displayTasks(tasksArray);
 }
 
 export { initSidebar, initDropdown, updateDateInput, displayTasks }
