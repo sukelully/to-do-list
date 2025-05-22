@@ -1,6 +1,7 @@
 import { formatDueDate, isPastDue } from "../date.js";
 import { getPriorityColor } from "./dropdown.js";
 import { showDeleteTaskModal } from "./taskModal.js";
+import { createProjectElement } from "../projectElement.js";
 
 // Create edit / delete btn for task elements
 const createOptionsBtn = (iconString) => {
@@ -13,9 +14,9 @@ const createOptionsBtn = (iconString) => {
     btn.appendChild(icon);
 
     return btn;
-}; 
+};
 
-const createTaskElement = (task, tasksArray) => {
+const createTaskElement = (task, project) => {
     const container = document.createElement("div");
     container.id = "task-container";
     container.classList.add("border", "border-solid", "border-slate-300", "rounded-lg", "p-4", "flex", "gap-4", "items-start", "shadow-xs", "hover:shadow-md", "duration-300", "hover:border-slate-400", "transition-all", "min-w-full", "group");
@@ -50,8 +51,7 @@ const createTaskElement = (task, tasksArray) => {
     const deleteBtn = createOptionsBtn("fa-trash");
 
     deleteBtn.addEventListener("click", () => {
-        // removeTask(task.id, tasksArray);
-        showDeleteTaskModal(task, tasksArray);
+        showDeleteTaskModal(task, project);
     });
 
     optionsContainer.appendChild(deleteBtn);
@@ -62,10 +62,14 @@ const createTaskElement = (task, tasksArray) => {
 };
 
 // Iterate through tasksArray and display in the DOM
-const displayTasks = (tasksArray) => {
+const displayTasks = (project) => {
     const projectsContainer = document.getElementById("projects-container");
     projectsContainer.innerHTML = "";
-    tasksArray.forEach(task => projectsContainer.appendChild(createTaskElement(task, tasksArray)));
+    // const projectContainer = document.createElement("div");
+    // projectContainer.textContent = `${project.name}`;
+    project.tasksArray.forEach(task => {
+        projectsContainer.appendChild(createTaskElement(task, project));
+    });
 };
 
 export { createTaskElement, displayTasks }

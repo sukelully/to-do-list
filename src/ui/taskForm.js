@@ -1,7 +1,7 @@
 import { displayTasks } from "./taskElement.js";
-import { Task } from "../task.js";
+import { Task } from "../models.js";
 
-const initTaskForm = (tasksArray) => {
+const initTaskForm = (project) => {
     const form = document.getElementById("add-task-form");
 
     form.addEventListener("submit", function (e) {
@@ -14,8 +14,8 @@ const initTaskForm = (tasksArray) => {
             task[key] = value;
         });
 
-        tasksArray.push(new Task(task.name, task.description, new Date(task.date), task.priority));
-        displayTasks(tasksArray);
+        project.tasksArray.push(new Task(task.name, task.description, new Date(task.date), task.priority));
+        displayTasks(project);
 
         document.getElementById("add-task-modal").classList.toggle("invisible");
     });
