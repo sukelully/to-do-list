@@ -5,7 +5,7 @@ const initDropdown = () => {
     document.addEventListener("DOMContentLoaded", () => {
         const dropdownBtn = document.getElementById("dropdown-btn");
         const dropdownMenu = document.getElementById("dropdown-menu");
-        const selectElement = document.getElementById("priority-select");
+        const selectElement = document.getElementById("priority");
         const cancelBtn = document.getElementById("cancel-btn");
         const addTaskModal = document.getElementById("add-task-modal");
         const addTaskBtn = document.getElementById("add-task-btn");
@@ -31,6 +31,7 @@ const initDropdown = () => {
                 }
 
                 selectElement.value = value;
+                console.log(selectElement.value);
 
                 dropdownMenu.classList.toggle("hidden");
             });

@@ -13,11 +13,10 @@ const initTaskForm = (projectsArray) => {
 
         formData.forEach((value, key) => {
             task[key] = value;
+            // console.log(`${key}, ${value}`);
         });
-        
-        console.log(projectsArray[0]);
-        console.log(projectsArray[1]);
-        projectsArray[0].tasksArray.push(new Task(task.name, task.description, new Date(task.date), task.priority));
+
+        projectsArray[0].tasksArray.push(new Task(task.name, task.description, new Date(task.date), parseInt(task.priority)));
         // displayTasks(project);
         displayProjects(projectsArray);
 
