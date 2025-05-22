@@ -1,8 +1,7 @@
 import "./styles.css";
 import { Project, Task } from "./models.js";
 import { initSidebar } from "./ui/sidebar.js";
-import { initDropdown } from "./ui/dropdown.js";
-import { displayTasks } from "./ui/taskElement.js";
+import { initDropdown, populateProjects } from "./ui/dropdown.js";
 import { initTaskForm } from "./ui/taskForm.js";
 import { displayProjects } from "./ui/projectElement.js"
 
@@ -29,8 +28,8 @@ const project2 = new Project("Second project", [...tasksArray]);
 
 projectsArray.push(testProject, project2);
 
-// displayTasks(testProject);
 displayProjects(projectsArray);
+populateProjects(projectsArray);
 
 initSidebar();
 initDropdown();

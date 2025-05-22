@@ -37,7 +37,7 @@ const clearTaskInput = () => {
     const dateInput = document.getElementById("date-input");
     const taskInput = document.getElementById("task-name-input");
     const descInput = document.getElementById("task-description-input");
-    const dropdownBtn = document.getElementById("dropdown-btn");
+    const dropdownBtn = document.getElementById("priority-dropdown-btn");
 
     dateInput.value = "";
     taskInput.value = "";

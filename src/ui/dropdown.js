@@ -3,40 +3,73 @@ import { clearTaskInput } from "./taskModal.js"
 
 const initDropdown = () => {
     document.addEventListener("DOMContentLoaded", () => {
-        const dropdownBtn = document.getElementById("dropdown-btn");
-        const dropdownMenu = document.getElementById("dropdown-menu");
-        const selectElement = document.getElementById("priority");
+        // Priority dropdown elements
+        const priorityBtn = document.getElementById("priority-dropdown-btn");
+        const priorityMenu = document.getElementById("priority-dropdown");
+        const prioritySelect = document.getElementById("priority");
+
+        // Project dropdown elements
+        const projectBtn = document.getElementById("project-dropdown-btn");
+        const projectMenu = document.getElementById("project-dropdown");
+        const projectSelect = document.getElementById("project");
+
         const cancelBtn = document.getElementById("cancel-btn");
         const addTaskModal = document.getElementById("add-task-modal");
         const addTaskBtn = document.getElementById("add-task-btn");
         const dateInput = document.getElementById("date-input");
 
-        dropdownBtn.addEventListener("click", (e) => {
+        // Toggle priority dropdown
+        priorityBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            dropdownMenu.classList.toggle("hidden");
+            priorityMenu.classList.toggle("hidden");
         });
 
-        dateInput.addEventListener("change", () => updateDateInput(dateInput));
-
-        dropdownMenu.querySelectorAll("li").forEach((item) => {
+        // Handle priority item click
+        priorityMenu.querySelectorAll("li").forEach((item) => {
             item.addEventListener("click", () => {
                 const value = item.dataset.value;
                 const label = item.textContent.trim();
                 const icon = item.querySelector("i").outerHTML;
 
                 if (value === "null") {
-                    dropdownBtn.innerHTML = resetDropdownContent();
+                    priorityBtn.innerHTML = resetDropdownContent("Priority");
                 } else {
-                    dropdownBtn.innerHTML = setDropdownContent(icon, label);
+                    priorityBtn.innerHTML = setDropdownContent(icon, label);
                 }
 
-                selectElement.value = value;
-                console.log(selectElement.value);
-
-                dropdownMenu.classList.toggle("hidden");
+                prioritySelect.value = value;
+                priorityMenu.classList.add("hidden");
             });
         });
 
+        // Toggle project dropdown
+        projectBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            projectMenu.classList.toggle("hidden");
+        });
+
+        // Handle project item click
+        projectMenu.querySelectorAll("li").forEach((item) => {
+            item.addEventListener("click", () => {
+                const value = item.dataset.value;
+                const label = item.textContent.trim();
+                const icon = item.querySelector("i")?.outerHTML || "";
+
+                if (value === "null") {
+                    projectBtn.innerHTML = resetDropdownContent("Project");
+                } else {
+                    projectBtn.innerHTML = setDropdownContent(icon, label);
+                }
+
+                projectSelect.value = value;
+                projectMenu.classList.add("hidden");
+            });
+        });
+
+        // Date change
+        dateInput.addEventListener("change", () => updateDateInput(dateInput));
+
+        // Open/close modal
         cancelBtn.addEventListener("click", () => {
             clearTaskInput();
             addTaskModal.classList.add("invisible");
@@ -46,6 +79,16 @@ const initDropdown = () => {
             clearTaskInput();
             addTaskModal.classList.toggle("invisible");
         });
+
+        // Optional: click outside to close dropdowns
+        document.addEventListener("click", (e) => {
+            if (!priorityBtn.contains(e.target) && !priorityMenu.contains(e.target)) {
+                priorityMenu.classList.add("hidden");
+            }
+            if (!projectBtn.contains(e.target) && !projectMenu.contains(e.target)) {
+                projectMenu.classList.add("hidden");
+            }
+        });
     });
 };
 
@@ -53,8 +96,8 @@ const setDropdownContent = (iconHTML, label) => {
     return `${iconHTML}<span>${label}</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
 };
 
-const resetDropdownContent = () => {
-    return `<span class="text-neutral-500">Priority</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
+const resetDropdownContent = (label) => {
+    return `<span class="text-neutral-500">${label}</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
 };
 
 const getPriorityColor = (priority) => {
@@ -66,4 +109,55 @@ const getPriorityColor = (priority) => {
     }
 };
 
-export { initDropdown, setDropdownContent, resetDropdownContent, getPriorityColor }
+const populateProjects = (projectsArray) => {
+    const projectMenu = document.getElementById("project-dropdown");
+    const projectSelect = document.getElementById("project");
+    const projectDropdownBtn = document.getElementById("project-dropdown-btn");
+
+    // Clear existing items
+    projectMenu.innerHTML = '';
+    projectSelect.innerHTML = '';
+
+    projectsArray.forEach((project, index) => {
+        const name = project.name;
+        const value = project.name;
+
+        // Add to custom dropdown
+        const li = document.createElement("li");
+        li.dataset.value = value;
+        li.className = "flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-stone-200";
+        li.innerHTML = `<i class="fa-solid fa-folder text-indigo-500"></i>${name}`;
+        projectMenu.appendChild(li);
+
+        // Add to native <select>
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = name;
+        projectSelect.appendChild(option);
+
+        // Preselect the first project
+        if (index === 0) {
+            projectSelect.value = value;
+            projectDropdownBtn.innerHTML = setDropdownContent(
+                `<i class="fa-solid fa-folder text-indigo-500"></i>`, name
+            );
+        }
+    });
+
+    // Add click event listeners to dropdown items
+    projectMenu.querySelectorAll("li").forEach((item) => {
+        item.addEventListener("click", () => {
+            const value = item.dataset.value;
+            const label = item.textContent.trim();
+            const icon = item.querySelector("i").outerHTML;
+
+            projectDropdownBtn.innerHTML = setDropdownContent(icon, label);
+            projectSelect.value = value;
+
+            projectMenu.classList.add("hidden");
+        });
+    });
+};
+
+
+export { initDropdown, setDropdownContent, resetDropdownContent, getPriorityColor, populateProjects };
