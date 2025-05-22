@@ -1,5 +1,6 @@
-import { formatDueDate, isPastDue, updateDateInput } from "../date.js";
-import { getPriorityColor, resetDropdownContent } from "./dropdown.js";
+import { formatDueDate, isPastDue } from "../date.js";
+import { getPriorityColor } from "./dropdown.js";
+import { showDeleteTaskModal } from "./taskModal.js";
 
 // Create edit / delete btn for task elements
 const createOptionsBtn = (iconString) => {
@@ -12,7 +13,7 @@ const createOptionsBtn = (iconString) => {
     btn.appendChild(icon);
 
     return btn;
-};
+}; 
 
 const createTaskElement = (task, tasksArray) => {
     const container = document.createElement("div");
@@ -67,46 +68,4 @@ const displayTasks = (tasksArray) => {
     tasksArray.forEach(task => projectsContainer.appendChild(createTaskElement(task, tasksArray)));
 };
 
-const clearTaskInput = () => {
-    const dateInput = document.getElementById("date-input");
-    const taskInput = document.getElementById("task-name-input");
-    const descInput = document.getElementById("task-description-input");
-    const dropdownBtn = document.getElementById("dropdown-btn");
-
-    dateInput.value = "";
-    taskInput.value = "";
-    descInput.value = "";
-    updateDateInput(dateInput);
-    dropdownBtn.innerHTML = resetDropdownContent();
-};
-
-const showDeleteTaskModal = (task, tasksArray) => {
-    const deleteTasksModal = document.getElementById("delete-task-modal");
-    deleteTasksModal.classList.remove("invisible");
-
-    const deleteTaskSpan = document.getElementById("delete-task-span");
-    deleteTaskSpan.textContent = `${task.task}`;
-
-    const cancelDeleteBtn = document.getElementById("cancel-delete-btn");
-    cancelDeleteBtn.addEventListener("click", () => {
-        console.log("test");
-        deleteTasksModal.classList.add("invisible");
-    });
-
-    const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
-    confirmDeleteBtn.addEventListener("click", () => {
-        removeTask(task.id, tasksArray);
-        deleteTasksModal.classList.add("invisible");
-    });
-};
-
-// Remove specified task from tasksArray
-const removeTask = (id, tasksArray) => {
-    const taskIndex = tasksArray.findIndex(task => task.id === id);
-    if (taskIndex !== -1) {
-        tasksArray.splice(taskIndex, 1);
-    }
-    displayTasks(tasksArray);
-};
-
-export { createTaskElement, displayTasks, clearTaskInput }
+export { createTaskElement, displayTasks }

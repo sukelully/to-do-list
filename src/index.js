@@ -3,9 +3,7 @@ import { Task } from "./task.js";
 import { initSidebar } from "./ui/sidebar.js";
 import { initDropdown } from "./ui/dropdown.js";
 import { displayTasks } from "./ui/taskElement.js";
-
-initSidebar();
-initDropdown();
+import { initTaskForm } from "./ui/taskForm.js";
 
 const tasksArray = [];
 const taskTest = new Task(
@@ -25,20 +23,6 @@ tasksArray.push(taskTest2);
 
 displayTasks(tasksArray);
 
-const addTaskListener = (function () {
-    const form = document.getElementById("add-task-form").addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const formData = new FormData(e.target);
-        const task = {};
-
-        formData.forEach((value, key) => {
-            task[key] = value;
-        });
-
-        tasksArray.push(new Task(task.name, task.description, new Date(task.date), task.priority));
-        displayTasks(tasksArray);
-
-        document.getElementById("add-task-modal").classList.toggle("invisible");
-    });
-})();
+initSidebar();
+initDropdown();
+initTaskForm(tasksArray);

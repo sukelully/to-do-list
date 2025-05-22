@@ -1,5 +1,5 @@
 import { updateDateInput } from "../date.js";
-import { clearTaskInput } from "./taskElement.js"
+import { clearTaskInput } from "./taskModal.js"
 
 const initDropdown = () => {
     document.addEventListener("DOMContentLoaded", () => {
