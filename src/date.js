@@ -9,7 +9,7 @@ const formatDueDate = (date) => {
 
         return format(date, formatStr);
     }
-}
+};
 
 const isPastDue = (date) => {
     const currentDate = new Date();
@@ -19,6 +19,11 @@ const isPastDue = (date) => {
     } else {
         return false;
     }
-}
+};
 
-export { formatDueDate, isPastDue }
+// Update text color to display whether a date is selected or not
+const updateDateInput = (dateInput) => {
+    dateInput.classList.toggle("text-neutral-500", dateInput.value === "");
+};
+
+export { formatDueDate, isPastDue, updateDateInput }

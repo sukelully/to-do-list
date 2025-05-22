@@ -1,9 +1,11 @@
 import "./styles.css";
 import { Task } from "./task.js";
-import * as ui from "./ui.js";
+import { initSidebar } from "./ui/sidebar.js";
+import { initDropdown } from "./ui/dropdown.js";
+import { displayTasks } from "./ui/taskElement.js";
 
-ui.initSidebar();
-ui.initDropdown();
+initSidebar();
+initDropdown();
 
 const tasksArray = [];
 const taskTest = new Task(
@@ -21,7 +23,7 @@ const taskTest2 = new Task(
 tasksArray.push(taskTest);
 tasksArray.push(taskTest2);
 
-ui.displayTasks(tasksArray);
+displayTasks(tasksArray);
 
 const addTaskListener = (function () {
     const form = document.getElementById("add-task-form").addEventListener("submit", function (e) {
@@ -35,7 +37,7 @@ const addTaskListener = (function () {
         });
 
         tasksArray.push(new Task(task.name, task.description, new Date(task.date), task.priority));
-        ui.displayTasks(tasksArray);
+        displayTasks(tasksArray);
 
         document.getElementById("add-task-modal").classList.toggle("invisible");
     });
