@@ -24,8 +24,6 @@ const initTaskForm = (projectsArray) => {
             }
         }
 
-        // projectsArray[1].tasksArray.push(new Task(task.name, task.description, new Date(task.date), parseInt(task.priority)));
-        // // displayTasks(project);
         displayProjects(projectsArray);
 
         document.getElementById("add-task-modal").classList.toggle("invisible");

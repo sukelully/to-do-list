@@ -12,7 +12,6 @@ const showDeleteTaskModal = (task, project, projectsArray) => {
 
     const cancelDeleteBtn = document.getElementById("cancel-delete-btn");
     cancelDeleteBtn.addEventListener("click", () => {
-        console.log("test");
         deleteTasksModal.classList.add("invisible");
     });
 
@@ -43,7 +42,7 @@ const clearTaskInput = () => {
     taskInput.value = "";
     descInput.value = "";
     updateDateInput(dateInput);
-    dropdownBtn.innerHTML = resetDropdownContent();
+    dropdownBtn.innerHTML = resetDropdownContent("Priority");
 };
 
 export { showDeleteTaskModal, clearTaskInput }

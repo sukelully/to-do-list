@@ -54,14 +54,14 @@
     <!-- Projects sections -->
     <section id="projects" class="mx-10 my-5 w-full">
       <h1 class="text-3xl font-bold my-4">Projects</h1>
-      <div id="projects-container" class="flex gap-4 border">
+      <div id="projects-container" class="flex gap-4">
 
       </div>
     </section>
 
     <!-- Add task modal -->
     <div id="add-task-modal"
-      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-xl shadow-2xl w-1/3 min-w-fit">
+      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-xl shadow-2xl w-1/3 min-w-fit invisible">
       <form id="add-task-form" class="flex flex-wrap flex-col w-full gap-2">
 
         <input type="text" id="task-name-input" name="name" placeholder="Task name"
@@ -75,7 +75,7 @@
             class="bg-stone-100 rounded-md px-4 text-neutral-500 cursor-pointer" />
           <div class="relative">
             <button id="priority-dropdown-btn"
-              class="flex items-center gap-2 px-4 py-2 bg-stone-100 rounded-md cursor-pointer">
+              class="flex items-center gap-2 px-4 py-2 bg-stone-100 rounded-md cursor-pointer h-full">
               <span class="text-neutral-500">Priority</span>
               <i class="fa-solid fa-chevron-down"></i>
             </button>

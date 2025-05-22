@@ -2,7 +2,7 @@ import { displayTasks } from "./taskElement";
 
 const createProjectContainer = (project) => {
     const projectContainer = document.createElement("div");
-    projectContainer.classList.add("flex", "flex-col", "gap-4", "w-64", "border");
+    projectContainer.classList.add("flex", "flex-col", "gap-4", "w-64");
 
     const projectTitle = document.createElement("h2");
     projectTitle.textContent = `${project.name}`;
@@ -15,7 +15,7 @@ const createProjectContainer = (project) => {
 
 const displayProjects = (projectsArray) => {
     const projectsContainer = document.getElementById("projects-container");
-    projectsContainer.innerHTML = ""; // Clear the board before re-rendering
+    projectsContainer.innerHTML = "";
     
     for (const project of projectsArray) {
         displayTasks(project, projectsArray);

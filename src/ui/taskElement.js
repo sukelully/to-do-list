@@ -64,7 +64,6 @@ const createTaskElement = (task, project, projectsArray) => {
 // Iterate through tasksArray and display in the DOM
 const displayTasks = (project, projectsArray) => {
     const projectsContainer = document.getElementById("projects-container");
-    // projectsContainer.innerHTML = "";
 
     const projectContainer = createProjectContainer(project);
     projectsContainer.appendChild(projectContainer);

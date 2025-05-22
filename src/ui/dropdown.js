@@ -30,8 +30,9 @@ const initDropdown = () => {
                 const value = item.dataset.value;
                 const label = item.textContent.trim();
                 const icon = item.querySelector("i").outerHTML;
+                console.log(value);
 
-                if (value === "null") {
+                if (value == "null") {
                     priorityBtn.innerHTML = resetDropdownContent("Priority");
                 } else {
                     priorityBtn.innerHTML = setDropdownContent(icon, label);
