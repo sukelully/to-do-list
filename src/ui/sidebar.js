@@ -5,6 +5,7 @@ const initSidebar = () => {
         const sidebar = document.getElementById("sidebar");
         const addTaskBtn = document.getElementById("add-task-btn");
         const calendarBtn = document.getElementById("calendar-btn");
+        const addProjectBtn = document.getElementById("add-project-btn");
     
         toggleSidebarBtn.addEventListener("click", () => {
             layout.classList.toggle("hidden-sidebar");
@@ -12,6 +13,7 @@ const initSidebar = () => {
             sidebar.classList.toggle("bg-stone-50");
             addTaskBtn.classList.toggle("invisible");
             calendarBtn.classList.toggle("invisible");
+            addProjectBtn.classList.toggle("invisible");
         });
     });
 };
