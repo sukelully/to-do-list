@@ -1,7 +1,7 @@
 import { formatDueDate, isPastDue } from "../date.js";
 import { getPriorityColor } from "./dropdown.js";
 import { showDeleteTaskModal } from "./taskModal.js";
-import { createProjectElement } from "../projectElement.js";
+import { createProjectContainer } from "./projectElement.js";
 
 // Create edit / delete btn for task elements
 const createOptionsBtn = (iconString) => {
@@ -16,7 +16,7 @@ const createOptionsBtn = (iconString) => {
     return btn;
 };
 
-const createTaskElement = (task, project) => {
+const createTaskElement = (task, project, projectsArray) => {
     const container = document.createElement("div");
     container.id = "task-container";
     container.classList.add("border", "border-solid", "border-slate-300", "rounded-lg", "p-4", "flex", "gap-4", "items-start", "shadow-xs", "hover:shadow-md", "duration-300", "hover:border-slate-400", "transition-all", "min-w-full", "group");
@@ -51,7 +51,7 @@ const createTaskElement = (task, project) => {
     const deleteBtn = createOptionsBtn("fa-trash");
 
     deleteBtn.addEventListener("click", () => {
-        showDeleteTaskModal(task, project);
+        showDeleteTaskModal(task, project, projectsArray);
     });
 
     optionsContainer.appendChild(deleteBtn);
@@ -62,13 +62,15 @@ const createTaskElement = (task, project) => {
 };
 
 // Iterate through tasksArray and display in the DOM
-const displayTasks = (project) => {
+const displayTasks = (project, projectsArray) => {
     const projectsContainer = document.getElementById("projects-container");
-    projectsContainer.innerHTML = "";
-    // const projectContainer = document.createElement("div");
-    // projectContainer.textContent = `${project.name}`;
+    // projectsContainer.innerHTML = "";
+
+    const projectContainer = createProjectContainer(project);
+    projectsContainer.appendChild(projectContainer);
+
     project.tasksArray.forEach(task => {
-        projectsContainer.appendChild(createTaskElement(task, project));
+        projectContainer.appendChild(createTaskElement(task, project, projectsArray));
     });
 };
 

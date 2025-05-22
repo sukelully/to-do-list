@@ -1,7 +1,8 @@
 import { displayTasks } from "./taskElement.js";
 import { Task } from "../models.js";
+import { displayProjects } from "./projectElement.js";
 
-const initTaskForm = (project) => {
+const initTaskForm = (projectsArray) => {
     const form = document.getElementById("add-task-form");
 
     form.addEventListener("submit", function (e) {
@@ -13,9 +14,12 @@ const initTaskForm = (project) => {
         formData.forEach((value, key) => {
             task[key] = value;
         });
-
-        project.tasksArray.push(new Task(task.name, task.description, new Date(task.date), task.priority));
-        displayTasks(project);
+        
+        console.log(projectsArray[0]);
+        console.log(projectsArray[1]);
+        projectsArray[0].tasksArray.push(new Task(task.name, task.description, new Date(task.date), task.priority));
+        // displayTasks(project);
+        displayProjects(projectsArray);
 
         document.getElementById("add-task-modal").classList.toggle("invisible");
     });

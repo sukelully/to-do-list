@@ -1,8 +1,9 @@
 import { displayTasks } from "./taskElement.js";
 import { updateDateInput } from "../date.js";
 import { resetDropdownContent } from "./dropdown.js";
+import { displayProjects } from "./projectElement.js";
 
-const showDeleteTaskModal = (task, project) => {
+const showDeleteTaskModal = (task, project, projectsArray) => {
     const deleteTasksModal = document.getElementById("delete-task-modal");
     deleteTasksModal.classList.remove("invisible");
 
@@ -17,18 +18,19 @@ const showDeleteTaskModal = (task, project) => {
 
     const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
     confirmDeleteBtn.addEventListener("click", () => {
-        removeTask(task.id, project);
+        removeTask(task.id, project, projectsArray);
         deleteTasksModal.classList.add("invisible");
     });
 };
 
 // Remove specified task from tasksArray
-const removeTask = (id, project) => {
+const removeTask = (id, project, projectsArray) => {
     const taskIndex = project.tasksArray.findIndex(task => task.id === id);
     if (taskIndex !== -1) {
         project.tasksArray.splice(taskIndex, 1);
     }
-    displayTasks(project);
+    // displayTasks(project);
+    displayProjects(projectsArray)
 };
 
 const clearTaskInput = () => {
