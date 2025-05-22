@@ -67,15 +67,17 @@ const initDropdown = () => {
 
         cancelBtn.addEventListener("click", () => {
             clearTaskInput();
-            addTaskModal.classList.add("hidden");
+            addTaskModal.classList.add("invisible");
         });
 
         addTaskBtn.addEventListener("click", () => {
             clearTaskInput();
-            addTaskModal.classList.toggle("hidden");
+            addTaskModal.classList.toggle("invisible");
         });
     });
 };
+
+
 
 const clearTaskInput = () => {
     const dateInput = document.getElementById("date-input");
@@ -160,7 +162,7 @@ const createOptionsBtn = (iconString) => {
 
 const showDeleteTaskModal = (task, tasksArray) => {
     const deleteTasksModal = document.getElementById("delete-task-modal");
-    deleteTasksModal.classList.toggle("invisible");
+    deleteTasksModal.classList.remove("invisible");
 
     const deleteTaskSpan = document.getElementById("delete-task-span");
     deleteTaskSpan.textContent = `${task.task}`;
@@ -168,8 +170,14 @@ const showDeleteTaskModal = (task, tasksArray) => {
     const cancelDeleteBtn = document.getElementById("cancel-delete-btn");
     cancelDeleteBtn.addEventListener("click", () => {
         console.log("test");
-        deleteTasksModal.classList.toggle("invisible")}
-    );
+        deleteTasksModal.classList.add("invisible");
+    });
+
+    const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
+    confirmDeleteBtn.addEventListener("click", () => {
+        removeTask(task.id, tasksArray);
+        deleteTasksModal.classList.add("invisible");
+    });
 }
 
 // Iterate through tasksArray and display in the DOM

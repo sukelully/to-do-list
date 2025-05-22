@@ -22,8 +22,7 @@
 <body class="flex bg-stone-50">
   <main id="layout" class="flex min-w-full transition-all duration-300 min-h-screen">
 
-    <section id="sidebar"
-      class="flex flex-col py-4 px-6 bg-stone-100 min-h-screen min-w-60 gap-4 transition-all">
+    <section id="sidebar" class="flex flex-col py-4 px-6 bg-stone-100 min-h-screen min-w-60 gap-4 transition-all">
       <div id="title-container" class="flex flex-row">
         <div id="header-container" class="flex flex-row-reverse items-center gap-3 justify-center">
           <h1 class="text-2xl font-bold tracking-wider">todoish</h1>
@@ -53,13 +52,16 @@
     </section>
 
     <!-- Add task modal -->
-    <section id="add-task-modal"
-      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-xl shadow-2xl w-1/3 min-w-fit hidden">
+    <div id="add-task-modal"
+      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-xl shadow-2xl w-1/3 min-w-fit invisible">
       <form id="add-task-form" class="flex flex-wrap flex-col w-full gap-2">
-        <input type="text" id="task-name-input" name="name" placeholder="Task name" class="outline-none text-lg placeholder-neutral-500" required />
-        <input type="text" id="task-description-input" name="description" placeholder="Description" class="outline-none text-sm placeholder-neutral-500" />
+        <input type="text" id="task-name-input" name="name" placeholder="Task name"
+          class="outline-none text-lg placeholder-neutral-500" required />
+        <input type="text" id="task-description-input" name="description" placeholder="Description"
+          class="outline-none text-sm placeholder-neutral-500" />
         <div class="flex justify-evenly gap-4">
-          <input type="date" name="date" id="date-input" class="bg-stone-100 rounded-md px-4 text-neutral-500 cursor-pointer" />
+          <input type="date" name="date" id="date-input"
+            class="bg-stone-100 rounded-md px-4 text-neutral-500 cursor-pointer" />
           <div class="relative">
             <button id="dropdown-btn" class="flex items-center gap-2 px-4 py-2 bg-stone-100 rounded-md cursor-pointer">
               <span class="text-neutral-500">Priority</span>
@@ -101,18 +103,20 @@
             class="text-white px-4 py-2 bg-indigo-500 rounded-md hover:bg-indigo-600 transition-colors duration-200 cursor-pointer"></input>
         </div>
       </form>
-    </section>
+    </div>
 
-    <section id="delete-task-modal">
-      <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg rounded-md mt-2 flex flex-col w-1/3 min-w-fit gap-2 p-4">
-        <p class="font-bold">Delete task?</p>
-        <p class="text-amber-300-sm">The <span id="delete-task-span" class="font-bold">test</span> task will be permanently deleted</p>
-        <div class="flex gap-4 ml-auto pr-2">
-          <button id="cancel-delete-btn" class="font-normal bg-stone-200 hover:bg-stone-300 rounded-md px-2 py-1 transition-colors duration-200 cursor-pointer">Cancel</button>
-          <button id="confirm-delete-btn" class="font-normal bg-red-700 hover:bg-red-800 text-white rounded-md px-2 py-1 transition-colors duration-200 cursor-pointer">Delete</button>
-        </div>
+    <div id="delete-task-modal"
+      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg rounded-md mt-2 flex flex-col w-1/3 min-w-fit gap-2 p-4 invisible">
+      <p class="font-bold">Delete task?</p>
+      <p class="text-amber-300-sm">The <span id="delete-task-span" class="font-bold">test</span> task will be
+        permanently deleted</p>
+      <div class="flex gap-4 ml-auto pr-2">
+        <button id="cancel-delete-btn"
+          class="font-normal bg-stone-200 hover:bg-stone-300 rounded-md px-2 py-1 transition-colors duration-200 cursor-pointer">Cancel</button>
+        <button id="confirm-delete-btn"
+          class="font-normal bg-red-700 hover:bg-red-800 text-white rounded-md px-2 py-1 transition-colors duration-200 cursor-pointer">Delete</button>
       </div>
-    </section>
+    </div>
   </main>
 </body>
 
