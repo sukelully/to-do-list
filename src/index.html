@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-screen">
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Todoish</title>
 
   <!-- Import fonts and font awesome icons -->
@@ -19,16 +19,18 @@
   <link rel="manifest" href="../public/favicon/site.webmanifest" />
 </head>
 
-<body class="flex bg-stone-50">
-  <main id="layout" class="flex min-w-full transition-all duration-300 min-h-screen">
-    <section id="sidebar" class="flex flex-col py-4 px-6 bg-stone-100 min-h-screen min-w-60 gap-4 transition-all">
+<body class="flex bg-stone-50 h-screen">
+  <main id="layout" class="flex sm:min-w-full transition-all duration-300 w-screen border overflow-hidden">
+
+    <!-- Sidebar -->
+    <section id="sidebar" class="flex flex-col py-4 px-6 bg-stone-100 h-full sm:min-w-60 gap-4 transition-all">
       <div id="title-container" class="flex flex-row">
         <div id="header-container" class="flex flex-row-reverse items-center gap-3 justify-center">
           <h1 class="text-2xl font-bold tracking-wider">todoish</h1>
           <i class="fa-solid fa-square-check text-2xl text-indigo-500"></i>
         </div>
         <button id="toggle-sidebar-btn" aria-label="Show/hide sidebar"
-          class="ml-auto cursor-pointer px-2 hover:bg-stone-200 rounded-md transition-colors duration-200">
+          class="ml-auto cursor-pointer pl-8 sm:px-2 hover:bg-stone-200 rounded-md transition-colors duration-200">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
@@ -51,9 +53,9 @@
     </section>
 
     <!-- Projects sections -->
-    <section id="projects" class="mx-10 my-5 w-full">
+    <section id="projects" class="sm:mx-10 ml-5 my-5 w-full h-full overflow-auto">
       <h1 class="text-3xl font-bold my-4">Projects</h1>
-      <div id="projects-container" class="flex gap-4"></div>
+      <div id="projects-container" class="flex gap-4 overflow-x-scroll border"></div>
     </section>
 
     <!-- Add task modal -->

@@ -1,26 +1,33 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 * {
-    font-family: "Outfit", sans-serif;
+  font-family: 'Outfit', sans-serif;
 }
 
+/* html,
+body {
+  height: 100%;
+  height: 100vh;
+  height: 100dvh;
+} */
+
 .hidden-sidebar #sidebar {
-    margin-left: -10rem
+  margin-left: -10rem;
 }
 
 .hidden-sidebar #projects {
-    margin-left: 2rem;
-    width: calc(100% - 2rem);
+  margin-left: 2rem;
+  width: calc(100% - 2rem);
 }
 
 #priority-dropdown {
-    z-index: 10;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  z-index: 10;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 #priority-dropdown li {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
