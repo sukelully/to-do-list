@@ -1,6 +1,7 @@
-import { Project } from "../models";
-import { populateProjects } from "./dropdown";
-import { displayProjects } from "./projectElement";
+import { Project } from "../models.js";
+import { populateProjects } from "./dropdown.js";
+import { displayProjects } from "./projectElement.js";
+import { openModal } from "../utils.js"
 
 const initAddProjectModal = () => {
     document.addEventListener("DOMContentLoaded", () => {
@@ -9,7 +10,9 @@ const initAddProjectModal = () => {
         const addProjectModal = document.getElementById("add-project-modal");
 
         addProjectBtn.addEventListener("click", () => {
-            addProjectModal.classList.toggle("invisible");
+            clearProjectInput();
+            // addProjectModal.classList.toggle("invisible");
+            openModal(addProjectModal.id);
         });
 
         cancelAddProjectBtn.addEventListener("click", () => {
@@ -18,16 +21,20 @@ const initAddProjectModal = () => {
     });
 };
 
+const clearProjectInput = () => {
+    const projectNameInput = document.getElementById("project-name-input");
+    projectNameInput.value = "";
+};
+
 const initProjectForm = (projectsArray) => {
     const form = document.getElementById("add-project-form");
     const addProjectModal = document.getElementById("add-project-modal");
     form.addEventListener("submit", function(e) {
         e.preventDefault();
+        console.log("test");
         
         const formData = new FormData(e.target);
         const projectName = formData.get("project-name");
-
-        console.log(projectName);
 
         projectsArray.push(new Project(projectName));
         displayProjects(projectsArray);

@@ -1,10 +1,13 @@
 import { updateDateInput } from "../date.js";
 import { resetDropdownContent } from "./dropdown.js";
+import { Task } from "../models.js";
 import { displayProjects } from "./projectElement.js";
+import { populateProjects } from "./dropdown.js";
+import { openModal } from "../utils.js";
 
 const showDeleteTaskModal = (task, project, projectsArray) => {
     const deleteTasksModal = document.getElementById("delete-task-modal");
-    deleteTasksModal.classList.remove("invisible");
+    openModal(deleteTasksModal.id);
 
     const deleteTaskSpan = document.getElementById("delete-task-span");
     deleteTaskSpan.textContent = `${task.task}`;
@@ -44,4 +47,31 @@ const clearTaskInput = () => {
     dropdownBtn.innerHTML = resetDropdownContent("Priority");
 };
 
-export { showDeleteTaskModal, clearTaskInput }
+const initTaskForm = (projectsArray) => {
+    const form = document.getElementById("add-task-form");
+    populateProjects(projectsArray);
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const task = {};
+
+        formData.forEach((value, key) => {
+            task[key] = value;
+            console.log(`${key}, ${value}`);
+        });
+
+        for (const project of projectsArray) {
+            if (project.name === task.project) {
+                project.tasksArray.push(new Task(task.name, task.description, new Date(task.date), parseInt(task.priority)));
+            }
+        }
+
+        displayProjects(projectsArray);
+
+        document.getElementById("add-task-modal").classList.toggle("invisible");
+    });
+}
+
+export { showDeleteTaskModal, clearTaskInput, initTaskForm }

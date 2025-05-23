@@ -1,8 +1,8 @@
 import "./styles.css";
 import { Project, Task } from "./models.js";
 import { initSidebar } from "./ui/sidebar.js";
-import { initDropdown, populateProjects } from "./ui/dropdown.js";
-import { initTaskForm } from "./ui/taskForm.js";
+import { initAddTaskModal, populateProjects } from "./ui/dropdown.js";
+import { initTaskForm } from "./ui/taskModal.js";
 import { displayProjects } from "./ui/projectElement.js"
 import { initAddProjectModal, initProjectForm } from "./ui/projectModal.js";
 
@@ -33,7 +33,7 @@ displayProjects(projectsArray);
 populateProjects(projectsArray);
 
 initSidebar();
-initDropdown();
+initAddTaskModal();
 initAddProjectModal();
 initTaskForm(projectsArray);
 initProjectForm(projectsArray);

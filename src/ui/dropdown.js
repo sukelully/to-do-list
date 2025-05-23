@@ -1,7 +1,8 @@
 import { updateDateInput } from "../date.js";
 import { clearTaskInput } from "./taskModal.js"
+import { openModal } from "../utils.js";
 
-const initDropdown = () => {
+const initAddTaskModal = () => {
     document.addEventListener("DOMContentLoaded", () => {
         // Priority dropdown elements
         const priorityBtn = document.getElementById("priority-dropdown-btn");
@@ -72,13 +73,12 @@ const initDropdown = () => {
 
         // Open/close modal
         cancelBtn.addEventListener("click", () => {
-            clearTaskInput();
             addTaskModal.classList.add("invisible");
         });
 
         addTaskBtn.addEventListener("click", () => {
             clearTaskInput();
-            addTaskModal.classList.toggle("invisible");
+            openModal(addTaskModal.id);
         });
 
         // Optional: click outside to close dropdowns
@@ -161,4 +161,4 @@ const populateProjects = (projectsArray) => {
 };
 
 
-export { initDropdown, setDropdownContent, resetDropdownContent, getPriorityColor, populateProjects };
+export { initAddTaskModal, setDropdownContent, resetDropdownContent, getPriorityColor, populateProjects };
