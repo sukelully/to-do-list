@@ -23,44 +23,52 @@
   <main id="layout" class="flex sm:min-w-full transition-all duration-300 w-screen border overflow-hidden">
 
     <!-- Sidebar -->
-    <section id="sidebar" class="flex flex-col py-4 px-6 bg-stone-100 h-full sm:min-w-60 gap-4 transition-all">
-      <div id="title-container" class="flex flex-row">
-        <div id="header-container" class="flex flex-row-reverse items-center gap-3 justify-center">
-          <h1 class="text-2xl font-bold tracking-wider">todoish</h1>
-          <i class="fa-solid fa-square-check text-2xl text-indigo-500"></i>
+    <section>
+      <nav id="sidebar" class="py-4 px-6 bg-stone-100 h-full sm:min-w-60 gap-4 transition-all hidden md:flex flex-col">
+        <div id="title-container" class="flex flex-row">
+          <div id="header-container" class="flex flex-row-reverse items-center gap-3 justify-center">
+            <h1 class="text-2xl font-bold tracking-wider">todoish</h1>
+            <i class="fa-solid fa-square-check text-2xl text-indigo-500"></i>
+          </div>
+          <button id="toggle-sidebar-btn" aria-label="Show/hide sidebar"
+            class="ml-auto cursor-pointer pl-8 sm:px-2 hover:bg-stone-200 rounded-md transition-colors duration-200">
+            <i class="fa-solid fa-bars"></i>
+          </button>
         </div>
-        <button id="toggle-sidebar-btn" aria-label="Show/hide sidebar"
-          class="ml-auto cursor-pointer pl-8 sm:px-2 hover:bg-stone-200 rounded-md transition-colors duration-200">
-          <i class="fa-solid fa-bars"></i>
+        <button aria-label="Add task" id="add-task-btn"
+          class="flex items-center gap-4 cursor-pointer p-2 hover:bg-stone-200 rounded-md transition-colors duration-200">
+          <i class="fa-solid fa-plus"></i>
+          Add task
         </button>
-      </div>
+        <button aria-label="Add project" id="add-project-btn"
+          class="flex items-center gap-4 cursor-pointer p-2 hover:bg-stone-200 rounded-md transition-colors duration-200">
+          <i class="fa-regular fa-folder-open"></i>
+          Add project
+        </button>
+        <button aria-label="Calendar" id="calendar-btn"
+          class="flex items-center gap-4 cursor-pointer p-2 hover:bg-stone-200 rounded-md transition-colors duration-200">
+          <i class="fa-regular fa-calendar"></i>
+          Calendar
+        </button>
+      </nav>
+    </section>
 
-      <button aria-label="Add task" id="add-task-btn"
-        class="flex items-center gap-4 cursor-pointer p-2 hover:bg-stone-200 rounded-md transition-colors duration-200">
-        <i class="fa-solid fa-plus"></i>
-        Add task
-      </button>
-      <button aria-label="Add project" id="add-project-btn"
-        class="flex items-center gap-4 cursor-pointer p-2 hover:bg-stone-200 rounded-md transition-colors duration-200">
-        <i class="fa-regular fa-folder-open"></i>
-        Add project
-      </button>
-      <button aria-label="Calendar" id="calendar-btn"
-        class="flex items-center gap-4 cursor-pointer p-2 hover:bg-stone-200 rounded-md transition-colors duration-200">
-        <i class="fa-regular fa-calendar"></i>
-        Calendar
-      </button>
+    <section id="mobile-menu">
+      <button id="toggle-sidebar-btn" aria-label="Show/hide sidebar"
+      class="ml-auto cursor-pointer pl-8 sm:px-2 hover:bg-stone-200 rounded-md transition-colors duration-200">
+      <i class="fa-solid fa-bars"></i>
+    </button>
     </section>
 
     <!-- Projects sections -->
     <section id="projects" class="sm:mx-10 ml-5 my-5 w-full h-full overflow-auto">
       <h1 class="text-3xl font-bold my-4">Projects</h1>
-      <div id="projects-container" class="flex gap-4 overflow-x-scroll border"></div>
+      <div id="projects-container" class="flex gap-4 overflow-x-scroll"></div>
     </section>
 
     <!-- Add task modal -->
     <div id="add-task-modal"
-      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-xl shadow-2xl w-1/3 min-w-fit invisible modal">
+      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-xl shadow-2xl sm:w-1/3 sm:min-w-fit max-w-full w-5/6 invisible modal">
       <form id="add-task-form" class="flex flex-wrap flex-col w-full gap-2">
         <input type="text" id="task-name-input" name="name" placeholder="Task name"
           class="outline-none text-lg placeholder-neutral-500" required />
@@ -68,7 +76,7 @@
         <input type="text" id="task-description-input" name="description" placeholder="Description"
           class="outline-none text-sm placeholder-neutral-500" />
 
-        <div class="flex justify-evenly gap-4">
+        <div class="flex sm:flex-row flex-col sm:justify-evenly sm:gap-4 gap-2 items-center">
           <input type="date" name="date" id="date-input"
             class="bg-stone-100 rounded-md px-4 text-neutral-500 cursor-pointer" />
           <div class="relative">
@@ -127,6 +135,7 @@
       </form>
     </div>
 
+    <!-- Delete task modal -->
     <div id="delete-task-modal"
       class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg rounded-md mt-2 flex flex-col w-1/3 min-w-fit gap-2 p-4 invisible modal">
       <p class="text-lg font-semibold">Delete task?</p>
@@ -146,20 +155,22 @@
       </div>
     </div>
 
+    <!-- Add project modal -->
     <div id="add-project-modal"
       class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg rounded-md mt-2 flex flex-col w-1/3 min-w-fit gap-4 p-4 invisible modal">
       <form id="add-project-form" class="flex flex-wrap flex-col w-full gap-2">
         <input type="text" id="project-name-input" name="project-name" placeholder="Project name"
           class="outline-none text-lg placeholder-neutral-500" required />
         <div class="flex gap-4 ml-auto pr-2">
-          <button id="cancel-add-project-btn"
-            type="button" class="font-normal bg-stone-200 hover:bg-stone-300 rounded-md px-2 py-1 transition-colors duration-200 cursor-pointer">
+          <button id="cancel-add-project-btn" type="button"
+            class="font-normal bg-stone-200 hover:bg-stone-300 rounded-md px-2 py-1 transition-colors duration-200 cursor-pointer">
             Cancel
           </button>
           <button type="submit" id="confirm-add-project-btn"
             class="font-normal bg-indigo-500 hover:bg-indigo-600 text-white rounded-md px-2 py-1 transition-colors duration-200 cursor-pointer">
             Add project
           </button>
+        </div>
       </form>
     </div>
   </main>

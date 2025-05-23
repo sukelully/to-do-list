@@ -19,7 +19,7 @@ const createOptionsBtn = (iconString) => {
 const createTaskElement = (task, project, projectsArray) => {
     const container = document.createElement("div");
     container.id = "task-container";
-    container.classList.add("border", "border-solid", "border-slate-300", "rounded-lg", "p-4", "flex", "gap-4", "items-start", "shadow-xs", "hover:shadow-md", "duration-300", "hover:border-slate-400", "transition-all", "min-w-full", "group");
+    container.classList.add("border", "border-solid", "border-slate-300", "rounded-lg", "p-4", "flex", "gap-4", "items-start", "shadow-xs", "hover:shadow-md", "duration-300", "hover:border-slate-400", "transition-all", "sm:min-w-full", "group", "w-64");
 
     const priorityIcon = document.createElement("i");
     priorityIcon.classList.add("fa-solid", "fa-circle", "py-2", getPriorityColor(task.priority));

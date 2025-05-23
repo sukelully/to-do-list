@@ -39,10 +39,12 @@ const clearTaskInput = () => {
     const taskInput = document.getElementById("task-name-input");
     const descInput = document.getElementById("task-description-input");
     const dropdownBtn = document.getElementById("priority-dropdown-btn");
+    const selectDropdown = document.getElementById("priority");
 
     dateInput.value = "";
     taskInput.value = "";
     descInput.value = "";
+    priority.value = null;
     updateDateInput(dateInput);
     dropdownBtn.innerHTML = resetDropdownContent("Priority");
 };
