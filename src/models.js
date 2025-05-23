@@ -1,5 +1,5 @@
 class Project {
-    constructor(name, tasksArray) {
+    constructor(name, tasksArray=[]) {
         this.name = name;
         this.tasksArray = tasksArray;
         this.id = crypto.randomUUID();

@@ -1,4 +1,3 @@
-import { displayTasks } from "./taskElement.js";
 import { Task } from "../models.js";
 import { displayProjects } from "./projectElement.js";
 import { populateProjects } from "./dropdown.js";

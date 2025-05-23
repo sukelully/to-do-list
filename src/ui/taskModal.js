@@ -1,4 +1,3 @@
-import { displayTasks } from "./taskElement.js";
 import { updateDateInput } from "../date.js";
 import { resetDropdownContent } from "./dropdown.js";
 import { displayProjects } from "./projectElement.js";

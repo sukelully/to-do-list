@@ -4,6 +4,7 @@ import { initSidebar } from "./ui/sidebar.js";
 import { initDropdown, populateProjects } from "./ui/dropdown.js";
 import { initTaskForm } from "./ui/taskForm.js";
 import { displayProjects } from "./ui/projectElement.js"
+import { initAddProjectModal, initProjectForm } from "./ui/projectModal.js";
 
 const tasksArray = [];
 const projectsArray = [];
@@ -33,4 +34,6 @@ populateProjects(projectsArray);
 
 initSidebar();
 initDropdown();
+initAddProjectModal();
 initTaskForm(projectsArray);
+initProjectForm(projectsArray);
