@@ -47,7 +47,7 @@ const createTaskElement = (task, project, projectsArray) => {
     const optionsContainer = document.createElement("div");
     optionsContainer.classList.add("ml-auto", "h-2xl", "flex", "flex-col");
 
-    const editBtn = createOptionsBtn("fa-pen-to-square");
+    // const editBtn = createOptionsBtn("fa-pen-to-square");
     const deleteBtn = createOptionsBtn("fa-trash");
 
     deleteBtn.addEventListener("click", () => {
@@ -55,7 +55,7 @@ const createTaskElement = (task, project, projectsArray) => {
     });
 
     optionsContainer.appendChild(deleteBtn);
-    optionsContainer.appendChild(editBtn);
+    // optionsContainer.appendChild(editBtn);
     container.appendChild(optionsContainer);
 
     return container;
@@ -65,7 +65,7 @@ const createTaskElement = (task, project, projectsArray) => {
 const displayTasks = (project, projectsArray) => {
     const projectsContainer = document.getElementById("projects-container");
 
-    const projectContainer = createProjectContainer(project);
+    const projectContainer = createProjectContainer(project, projectsArray);
     projectsContainer.appendChild(projectContainer);
 
     project.tasksArray.forEach(task => {

@@ -1,3 +1,5 @@
+import { clearTaskInput } from "./taskModal.js";
+
 const initSidebar = () => {
     document.addEventListener("DOMContentLoaded", () => {
         const toggleSidebarBtn = document.getElementById("toggle-sidebar-btn");
@@ -36,6 +38,7 @@ const initMobileSidebar = () => {
             btn.addEventListener("click", () => {
                 const action = btn.dataset.action;
                 if (action === "add-task") {
+                    clearTaskInput();
                     document.getElementById("add-task-modal").classList.remove("invisible");
                 } else if (action === "add-project") {
                     document.getElementById("add-project-modal").classList.remove("invisible");
