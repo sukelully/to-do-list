@@ -1,6 +1,6 @@
 import "./styles.css";
 import { Project, Task } from "./models.js";
-import { initSidebar } from "./ui/sidebar.js";
+import { initSidebar, initMobileSidebar } from "./ui/sidebar.js";
 import { initAddTaskModal, populateProjects } from "./ui/dropdown.js";
 import { initTaskForm } from "./ui/taskModal.js";
 import { displayProjects } from "./ui/projectElement.js"
@@ -33,6 +33,7 @@ displayProjects(projectsArray);
 populateProjects(projectsArray);
 
 initSidebar();
+initMobileSidebar();
 initAddTaskModal();
 initAddProjectModal();
 initTaskForm(projectsArray);
