@@ -6,7 +6,7 @@ import { createProjectContainer } from "./projectElement.js";
 // Create edit / delete btn for task elements
 const createOptionsBtn = (iconString) => {
     const btn = document.createElement("button");
-    btn.classList.add("ml-auto", "invisible", "group-hover:visible", "cursor-pointer");
+    btn.classList.add("ml-auto", "md:invisible", "group-hover:visible", "cursor-pointer");
 
     const icon = document.createElement("i");
     icon.classList.add("fa-solid", `${iconString}`);
