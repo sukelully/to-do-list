@@ -1,6 +1,6 @@
 import { Project } from "../models.js";
 import { populateProjects } from "./dropdown.js";
-import { displayProjects } from "./projectElement.js";
+import { displayProjects, removeProject } from "./projectElement.js";
 import { openModal, saveToLocalStorage } from "../utils.js"
 
 const initAddProjectModal = () => {
@@ -18,6 +18,32 @@ const initAddProjectModal = () => {
         cancelAddProjectBtn.addEventListener("click", () => {
             addProjectModal.classList.add("invisible");
         });
+    });
+};
+
+const showDeleteProjectModal = (project, projectsArray) => {
+    const deleteProjectModal = document.getElementById("delete-project-modal");
+    openModal(deleteProjectModal.id);
+
+    const deleteProjectSpan = document.getElementById("delete-project-span");
+    deleteProjectSpan.textContent = `${project.name}`;
+
+    const cancelDeleteBtn = document.getElementById("cancel-delete-project-btn");
+    const confirmDeleteBtn = document.getElementById("confirm-delete-project-btn");
+
+    // Cleanup previous listeners (optional if you run into duplicates)
+    const newCancelBtn = cancelDeleteBtn.cloneNode(true);
+    cancelDeleteBtn.replaceWith(newCancelBtn);
+    const newConfirmBtn = confirmDeleteBtn.cloneNode(true);
+    confirmDeleteBtn.replaceWith(newConfirmBtn);
+
+    newCancelBtn.addEventListener("click", () => {
+        deleteProjectModal.classList.add("invisible");
+    });
+
+    newConfirmBtn.addEventListener("click", () => {
+        removeProject(project.id, projectsArray);
+        deleteProjectModal.classList.add("invisible");
     });
 };
 
@@ -45,4 +71,4 @@ const initProjectForm = (projectsArray) => {
     });
 };
 
-export { initAddProjectModal, initProjectForm }
+export { initAddProjectModal, initProjectForm, showDeleteProjectModal }

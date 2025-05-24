@@ -1,5 +1,6 @@
 import { displayTasks } from "./taskElement";
 import { saveToLocalStorage } from "../utils.js";
+import { showDeleteProjectModal } from "./projectModal.js";
 
 const createProjectContainer = (project, projectsArray) => {
     const projectContainer = document.createElement("div");
@@ -15,8 +16,9 @@ const createProjectContainer = (project, projectsArray) => {
     const deleteIcon = document.createElement("i");
     deleteIcon.classList.add("fa-solid", "fa-trash", "ml-auto", "pr-4");
     deleteIcon.addEventListener("click", () =>{
-        console.log(project.id, projectsArray);
-        removeProject(project.id, projectsArray);
+        // console.log(project.id, projectsArray);
+        // removeProject(project.id, projectsArray);
+        showDeleteProjectModal(project, projectsArray);
     });
 
     projectTitleContainer.appendChild(projectTitle);
@@ -46,4 +48,4 @@ const displayProjects = (projectsArray) => {
     }
 }
 
-export { createProjectContainer, displayProjects }
+export { createProjectContainer, displayProjects, removeProject }

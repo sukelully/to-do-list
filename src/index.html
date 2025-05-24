@@ -58,10 +58,10 @@
         class="cursor-pointer sm:px-2 pl-4 pt-2 hover:bg-stone-200 rounded-md transition-colors duration-200 z-50 relative">
         <i class="fa-solid fa-bars"></i>
       </button>
-    
+
       <!-- Background overlay -->
       <!-- <div id="opaque-screen" class="fixed inset-0 bg-neutral-500 bg-opacity-50 z-40 hidden"></div> -->
-    
+
       <!-- Mobile sidebar -->
       <nav id="mobile-sidebar"
         class="fixed top-0 left-0 w-64 h-full bg-stone-100 p-6 flex-col z-50 transform -translate-x-full transition-transform duration-300">
@@ -75,7 +75,7 @@
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
-    
+
         <button data-action="add-task" class="mobile-btn flex items-center gap-4 p-2 hover:bg-stone-200 rounded-md">
           <i class="fa-solid fa-plus"></i> Add task
         </button>
@@ -200,6 +200,26 @@
           </button>
         </div>
       </form>
+    </div>
+
+    <!-- Delete project modal -->
+    <div id="delete-project-modal"
+      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg rounded-md mt-2 flex flex-col w-1/3 min-w-fit gap-2 p-4 invisible modal">
+      <p class="text-lg font-semibold">Delete project?</p>
+      <p class="text">
+        The <span id="delete-project-span" class="font-semibold">project name</span> project
+        and all its tasks will be permanently deleted.
+      </p>
+      <div class="flex gap-4 ml-auto pr-2">
+        <button id="cancel-delete-project-btn"
+          class="font-normal bg-stone-200 hover:bg-stone-300 rounded-md px-2 py-1 transition-colors duration-200 cursor-pointer">
+          Cancel
+        </button>
+        <button id="confirm-delete-project-btn"
+          class="font-normal bg-red-700 hover:bg-red-800 text-white rounded-md px-2 py-1 transition-colors duration-200 cursor-pointer">
+          Delete
+        </button>
+      </div>
     </div>
   </main>
 </body>
