@@ -14,7 +14,7 @@ const createProjectContainer = (project, projectsArray) => {
     projectTitle.classList.add("font-semibold");
 
     const deleteIcon = document.createElement("i");
-    deleteIcon.classList.add("fa-solid", "fa-trash", "ml-auto", "pr-4");
+    deleteIcon.classList.add("fa-solid", "fa-trash", "ml-auto", "pr-4", "cursor-pointer");
     deleteIcon.addEventListener("click", () =>{
         // console.log(project.id, projectsArray);
         // removeProject(project.id, projectsArray);
