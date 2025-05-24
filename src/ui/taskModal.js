@@ -3,7 +3,7 @@ import { resetDropdownContent } from "./dropdown.js";
 import { Task } from "../models.js";
 import { displayProjects } from "./projectElement.js";
 import { populateProjects } from "./dropdown.js";
-import { openModal } from "../utils.js";
+import { openModal, saveToLocalStorage } from "../utils.js";
 
 const showDeleteTaskModal = (task, project, projectsArray) => {
     const deleteTasksModal = document.getElementById("delete-task-modal");
@@ -32,6 +32,7 @@ const removeTask = (id, project, projectsArray) => {
     }
     // displayTasks(project);
     displayProjects(projectsArray)
+    saveToLocalStorage(projectsArray);
 };
 
 const clearTaskInput = () => {
@@ -71,7 +72,7 @@ const initTaskForm = (projectsArray) => {
         }
 
         displayProjects(projectsArray);
-
+        saveToLocalStorage(projectsArray);
         document.getElementById("add-task-modal").classList.toggle("invisible");
     });
 }

@@ -5,29 +5,23 @@ import { initAddTaskModal, populateProjects } from "./ui/dropdown.js";
 import { initTaskForm } from "./ui/taskModal.js";
 import { displayProjects } from "./ui/projectElement.js"
 import { initAddProjectModal, initProjectForm } from "./ui/projectModal.js";
+import { saveToLocalStorage, loadFromLocalStorage } from "./utils.js";
 
 const tasksArray = [];
 const projectsArray = [];
 
-const taskTest = new Task(
-    "Do laundry",
-    "fold and do dishes",
-    new Date(2025, 5, 24),
-    3);
+loadFromLocalStorage(projectsArray);
 
-const taskTest2 = new Task(
-    "Do dishes",
-    "Walk dog idk",
-    new Date(2024, 6, 13),
-    2);
+if (projectsArray.length === 0) {
+    // Optional: Add test data if nothing is stored
+    const taskTest = new Task("Do laundry", "fold and do dishes", new Date(2025, 5, 24), 3);
+    const taskTest2 = new Task("Do dishes", "Walk dog idk", new Date(2024, 6, 13), 2);
+    const testProject = new Project("Test project", [taskTest, taskTest2]);
+    const project2 = new Project("Second project", [taskTest, taskTest2]);
 
-tasksArray.push(taskTest);
-tasksArray.push(taskTest2);
-
-const testProject = new Project("Test project", [...tasksArray]);
-const project2 = new Project("Second project", [...tasksArray]);
-
-projectsArray.push(testProject, project2);
+    projectsArray.push(testProject, project2);
+    saveToLocalStorage(projectsArray);
+}
 
 displayProjects(projectsArray);
 populateProjects(projectsArray);

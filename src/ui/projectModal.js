@@ -1,7 +1,7 @@
 import { Project } from "../models.js";
 import { populateProjects } from "./dropdown.js";
 import { displayProjects } from "./projectElement.js";
-import { openModal } from "../utils.js"
+import { openModal, saveToLocalStorage } from "../utils.js"
 
 const initAddProjectModal = () => {
     document.addEventListener("DOMContentLoaded", () => {
@@ -37,6 +37,7 @@ const initProjectForm = (projectsArray) => {
         const projectName = formData.get("project-name");
 
         projectsArray.push(new Project(projectName));
+        saveToLocalStorage(projectsArray);
         displayProjects(projectsArray);
         populateProjects(projectsArray);
         
