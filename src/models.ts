@@ -1,19 +1,34 @@
 class Project {
-    constructor(name, tasksArray=[]) {
-        this.name = name;
-        this.tasksArray = tasksArray;
-        this.id = crypto.randomUUID();
-    }
+  name: string;
+  tasksArray: Task[];
+  id: string;
+
+  constructor(name: string, tasksArray: Task[] = []) {
+    this.name = name;
+    this.tasksArray = tasksArray;
+    this.id = crypto.randomUUID();
+  }
 }
 
 class Task {
-    constructor(task, description=null, dueDate=null, priority=null) {
-        this.task = task;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.priority = priority;
-        this.id = crypto.randomUUID();
-    }
+  task: string;
+  description: string | null;
+  dueDate: Date | null;
+  priority: number | null;
+  id: string;
+
+  constructor(
+    task: string,
+    description: string | null = null,
+    dueDate: Date | null = null,
+    priority: number | null = null
+  ) {
+    this.task = task;
+    this.description = description;
+    this.dueDate = dueDate;
+    this.priority = priority;
+    this.id = crypto.randomUUID();
+  }
 }
 
-export { Project, Task }
+export { Project, Task };
