@@ -13,14 +13,14 @@ class Project {
 class Task {
   task: string;
   description: string | null;
-  dueDate: Date | null;
+  dueDate: Date | string | null;
   priority: number | null;
   id: string;
 
   constructor(
     task: string,
     description: string | null = null,
-    dueDate: Date | null = null,
+    dueDate: Date | string | null = null,
     priority: number | null = null
   ) {
     this.task = task;

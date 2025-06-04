@@ -1,19 +1,17 @@
 import "./styles.css";
-import { Project, Task } from "./models.ts";
-import { initSidebar, initMobileSidebar } from "./ui/sidebar.ts";
-import { initAddTaskModal, populateProjects } from "./ui/dropdown.ts";
-import { initTaskForm } from "./ui/taskModal.ts";
-import { displayProjects } from "./ui/projectElement.ts"
-import { initAddProjectModal, initProjectForm } from "./ui/projectModal.ts";
-import { saveToLocalStorage, loadFromLocalStorage } from "./utils.ts";
+import { Project, Task } from "./models";
+import { initSidebar, initMobileSidebar } from "./ui/sidebar";
+import { initAddTaskModal, populateProjects } from "./ui/dropdown";
+import { initTaskForm } from "./ui/taskModal";
+import { displayProjects } from "./ui/projectElement"
+import { initAddProjectModal, initProjectForm } from "./ui/projectModal";
+import { saveToLocalStorage, loadFromLocalStorage } from "./utils";
 
-const tasksArray = [];
-const projectsArray = [];
+const projectsArray: Project[] = [];
 
 loadFromLocalStorage(projectsArray);
 
 if (projectsArray.length === 0) {
-    // Optional: Add test data if nothing is stored
     const taskTest = new Task("Walk Monty", "And praise him", new Date(2025, 5, 24), 1);
     const taskTest2 = new Task("Do dishes", null, new Date(2024, 6, 13), 2);
     const defaultProject = new Project("Daily To Do", [taskTest, taskTest2]);

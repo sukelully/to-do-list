@@ -1,7 +1,7 @@
-import { formatDueDate, isPastDue } from "../date.ts";
-import { getPriorityColor } from "./dropdown.ts";
-import { showDeleteTaskModal } from "./taskModal.ts";
-import { createProjectContainer } from "./projectElement.ts";
+import { formatDueDate, isPastDue } from "../date";
+import { getPriorityColor } from "./dropdown";
+import { showDeleteTaskModal } from "./taskModal";
+import { createProjectContainer } from "./projectElement";
 
 // Create edit / delete btn for task elements
 const createOptionsBtn = (iconString) => {

@@ -1,4 +1,4 @@
-import { clearTaskInput } from "./taskModal.ts";
+import { clearTaskInput } from "./taskModal";
 
 const initSidebar = () => {
     document.addEventListener("DOMContentLoaded", () => {

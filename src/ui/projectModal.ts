@@ -1,7 +1,7 @@
-import { Project } from "../models.ts";
-import { populateProjects } from "./dropdown.ts";
-import { displayProjects, removeProject } from "./projectElement.ts";
-import { openModal, saveToLocalStorage } from "../utils.ts"
+import { Project } from "../models";
+import { populateProjects } from "./dropdown";
+import { displayProjects, removeProject } from "./projectElement";
+import { openModal, saveToLocalStorage } from "../utils"
 
 const initAddProjectModal = () => {
     document.addEventListener("DOMContentLoaded", () => {

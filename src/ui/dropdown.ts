@@ -1,6 +1,6 @@
-import { updateDateInput } from "../date.ts";
-import { clearTaskInput } from "./taskModal.ts"
-import { openModal } from "../utils.ts";
+import { updateDateInput } from "../date";
+import { clearTaskInput } from "./taskModal"
+import { openModal } from "../utils";
 
 const initAddTaskModal = () => {
     document.addEventListener("DOMContentLoaded", () => {

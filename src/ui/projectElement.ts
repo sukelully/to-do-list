@@ -1,6 +1,6 @@
-import { displayTasks } from "./taskElement.ts";
-import { saveToLocalStorage } from "../utils.ts";
-import { showDeleteProjectModal } from "./projectModal.ts";
+import { displayTasks } from "./taskElement";
+import { saveToLocalStorage } from "../utils";
+import { showDeleteProjectModal } from "./projectModal";
 
 const createProjectContainer = (project, projectsArray) => {
     const projectContainer = document.createElement("div");
