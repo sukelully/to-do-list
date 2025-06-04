@@ -1,4 +1,4 @@
-import { Task, Project } from "./models.js";
+import { Task, Project } from "./models.ts";
 
 const openModal = (id) => {
     // Close all modals

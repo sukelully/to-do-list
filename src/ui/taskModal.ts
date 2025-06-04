@@ -1,9 +1,9 @@
-import { updateDateInput } from "../date.js";
-import { resetDropdownContent } from "./dropdown.js";
-import { Task } from "../models.js";
-import { displayProjects } from "./projectElement.js";
-import { populateProjects } from "./dropdown.js";
-import { openModal, saveToLocalStorage } from "../utils.js";
+import { updateDateInput } from "../date.ts";
+import { resetDropdownContent } from "./dropdown.ts";
+import { Task } from "../models.ts";
+import { displayProjects } from "./projectElement.ts";
+import { populateProjects } from "./dropdown.ts";
+import { openModal, saveToLocalStorage } from "../utils.ts";
 
 const showDeleteTaskModal = (task, project, projectsArray) => {
     const deleteTasksModal = document.getElementById("delete-task-modal");

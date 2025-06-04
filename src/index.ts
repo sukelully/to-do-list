@@ -1,11 +1,11 @@
 import "./styles.css";
-import { Project, Task } from "./models.js";
-import { initSidebar, initMobileSidebar } from "./ui/sidebar.js";
-import { initAddTaskModal, populateProjects } from "./ui/dropdown.js";
-import { initTaskForm } from "./ui/taskModal.js";
-import { displayProjects } from "./ui/projectElement.js"
-import { initAddProjectModal, initProjectForm } from "./ui/projectModal.js";
-import { saveToLocalStorage, loadFromLocalStorage } from "./utils.js";
+import { Project, Task } from "./models.ts";
+import { initSidebar, initMobileSidebar } from "./ui/sidebar.ts";
+import { initAddTaskModal, populateProjects } from "./ui/dropdown.ts";
+import { initTaskForm } from "./ui/taskModal.ts";
+import { displayProjects } from "./ui/projectElement.ts"
+import { initAddProjectModal, initProjectForm } from "./ui/projectModal.ts";
+import { saveToLocalStorage, loadFromLocalStorage } from "./utils.ts";
 
 const tasksArray = [];
 const projectsArray = [];
