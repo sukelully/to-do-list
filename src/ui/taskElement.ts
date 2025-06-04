@@ -90,7 +90,6 @@ const createTaskElement = (
   const optionsContainer = document.createElement('div');
   optionsContainer.classList.add('ml-auto', 'h-2xl', 'flex', 'flex-col');
 
-  // const editBtn = createOptionsBtn("fa-pen-to-square");
   const deleteBtn = createOptionsBtn('fa-trash');
 
   deleteBtn.addEventListener('click', () => {
@@ -98,7 +97,6 @@ const createTaskElement = (
   });
 
   optionsContainer.appendChild(deleteBtn);
-  // optionsContainer.appendChild(editBtn);
   container.appendChild(optionsContainer);
 
   return container;

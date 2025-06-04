@@ -1,6 +1,7 @@
 import { updateDateInput } from "../date";
 import { clearTaskInput } from "./taskModal"
 import { openModal } from "../utils";
+import { Project } from "../models";
 
 const initAddTaskModal = () => {
     document.addEventListener("DOMContentLoaded", () => {
@@ -93,15 +94,15 @@ const initAddTaskModal = () => {
     });
 };
 
-const setDropdownContent = (iconHTML, label) => {
+const setDropdownContent = (iconHTML: string, label: string) => {
     return `${iconHTML}<span>${label}</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
 };
 
-const resetDropdownContent = (label) => {
+const resetDropdownContent = (label: string) => {
     return `<span class="text-neutral-500">${label}</span><i class="fa-solid fa-chevron-down ml-auto"></i>`;
 };
 
-const getPriorityColor = (priority) => {
+const getPriorityColor = (priority: number) => {
     switch (priority) {
         case 1: return "text-green-600";
         case 2: return "text-amber-500";
@@ -110,7 +111,7 @@ const getPriorityColor = (priority) => {
     }
 };
 
-const populateProjects = (projectsArray) => {
+const populateProjects = (projectsArray: Project[]) => {
     const projectMenu = document.getElementById("project-dropdown");
     const projectSelect = document.getElementById("project");
     const projectDropdownBtn = document.getElementById("project-dropdown-btn");
