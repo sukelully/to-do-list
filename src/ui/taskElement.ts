@@ -57,7 +57,7 @@ const createTaskElement = (
     'fa-solid',
     'fa-circle',
     'py-2',
-    getPriorityColor(task.priority)
+    getPriorityColor(task.priority ?? 0)
   );
   container.appendChild(priorityIcon);
 
