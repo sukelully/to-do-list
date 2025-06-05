@@ -1,13 +1,15 @@
 import { clearTaskInput } from "./taskModal";
+import { getRequiredElement } from "../utils";
+
 
 const initSidebar = () => {
     document.addEventListener("DOMContentLoaded", () => {
-        const toggleSidebarBtn = document.getElementById("toggle-sidebar-btn");
-        const layout = document.getElementById("layout");
-        const sidebar = document.getElementById("sidebar");
-        const addTaskBtn = document.getElementById("add-task-btn");
-        const calendarBtn = document.getElementById("calendar-btn");
-        const addProjectBtn = document.getElementById("add-project-btn");
+        const toggleSidebarBtn = getRequiredElement<HTMLButtonElement>("toggle-sidebar-btn");
+        const layout = getRequiredElement<HTMLElement>("layout");
+        const sidebar = getRequiredElement<HTMLElement>("sidebar");
+        const addTaskBtn = getRequiredElement<HTMLButtonElement>("add-task-btn");
+        const calendarBtn = getRequiredElement<HTMLButtonElement>("calendar-btn");
+        const addProjectBtn = getRequiredElement<HTMLButtonElement>("add-project-btn");
 
         toggleSidebarBtn.addEventListener("click", () => {
             layout.classList.toggle("hidden-sidebar");
@@ -22,9 +24,9 @@ const initSidebar = () => {
 
 const initMobileSidebar = () => {
     document.addEventListener("DOMContentLoaded", () => {
-        const toggleBtn = document.getElementById("toggle-mobile-sidebar-btn");
-        const closeBtn = document.getElementById("close-mobile-sidebar-btn");
-        const sidebar = document.getElementById("mobile-sidebar");
+        const toggleBtn = getRequiredElement<HTMLButtonElement>("toggle-mobile-sidebar-btn");
+        const closeBtn = getRequiredElement<HTMLButtonElement>("close-mobile-sidebar-btn");
+        const sidebar = getRequiredElement<HTMLElement>("mobile-sidebar");
 
         const openSidebar = () => sidebar.classList.remove("-translate-x-full");
         const closeSidebar = () => sidebar.classList.add("-translate-x-full");
@@ -36,12 +38,13 @@ const initMobileSidebar = () => {
         const modalTriggers = sidebar.querySelectorAll("[data-action]");
         modalTriggers.forEach(btn => {
             btn.addEventListener("click", () => {
-                const action = btn.dataset.action;
+                const button = btn as HTMLElement;
+                const action = button.dataset.action;
                 if (action === "add-task") {
                     clearTaskInput();
-                    document.getElementById("add-task-modal").classList.remove("invisible");
+                    getRequiredElement<HTMLDivElement>("add-task-modal").classList.remove("invisible");
                 } else if (action === "add-project") {
-                    document.getElementById("add-project-modal").classList.remove("invisible");
+                    getRequiredElement<HTMLDivElement>("add-project-modal").classList.remove("invisible");
                 } else if (action === "calendar") {
                     // Handle calendar button (if needed)
                 }
