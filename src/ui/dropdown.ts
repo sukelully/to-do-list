@@ -21,13 +21,13 @@ const initAddTaskModal = () => {
         const dateInput = document.getElementById("date-input");
 
         // Toggle priority dropdown
-        priorityBtn.addEventListener("click", (e) => {
+        priorityBtn!.addEventListener("click", (e) => {
             e.preventDefault();
-            priorityMenu.classList.toggle("hidden");
+            priorityMenu!.classList.toggle("hidden");
         });
 
         // Handle priority item click
-        priorityMenu.querySelectorAll("li").forEach((item) => {
+        priorityMenu!.querySelectorAll("li").forEach((item) => {
             item.addEventListener("click", () => {
                 const value = item.dataset.value;
                 const label = item.textContent.trim();
