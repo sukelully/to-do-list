@@ -104,9 +104,7 @@ const initTaskForm = (projectsArray: Project[]) => {
 
       displayProjects(projectsArray);
       saveToLocalStorage(projectsArray);
-      getRequiredElement<HTMLDivElement>('add-task-modal').classList.toggle(
-        'invisible'
-      );
+      getRequiredElement<HTMLDivElement>('add-task-modal').classList.toggle('invisible');
     } else {
       console.error('Missing form fields:', task);
     }
